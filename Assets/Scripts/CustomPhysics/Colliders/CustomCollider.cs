@@ -6,7 +6,7 @@ namespace CustomPhysics {
     public abstract class CustomCollider : MonoBehaviour {
         public string Tag { get; set; }
 
-        protected virtual void Awake() {
+        protected virtual void Start() {
             CollisionManager.GetInstance().AddCollider(this);
         }
 

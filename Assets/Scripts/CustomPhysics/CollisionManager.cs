@@ -31,7 +31,6 @@ namespace CustomPhysics {
                 
             }
         }
-
         public void AddCollider(CustomCollider collider) {
             _colliders.Add(collider);
         }
@@ -204,6 +203,20 @@ namespace CustomPhysics {
             return ret;
         }
 
+        public bool Raycast(Vector2 origin, Vector2 dir, float length, out RaycastInfo info) {
+            int numOfColliders = _colliders.Count;
+            for (int i = 0; i < numOfColliders; ++i) {
+                if (_colliders[i] is PolygonCollider) {
+                    if (Raycast(origin, dir, _colliders[i] as PolygonCollider, out info)) {
+                        if (length < info.distance) continue;
+                        return true;
+                    }
+                }
+            }
+            info = new RaycastInfo();
+            return false;
+        }
+
         public bool Raycast(Vector2 origin, Vector2 dir, PolygonCollider collider, out RaycastInfo info) {
             var polygon = collider.GetPolygon();
             var points = polygon._points;
@@ -256,6 +269,7 @@ namespace CustomPhysics {
             var iDen = 1 / denominator;
             i.x = (a * dbx - dax * b) * iDen;
             i.y = (a * dby - day * b) * iDen;
+            c = i;
             
             if (!IsInRect(i, b1, b2)) return false;
             if ((day > 0f && i.y > a1.y) || (day < 0f && i.y < a1.y)) return false;

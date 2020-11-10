@@ -18,4 +18,11 @@ namespace Aroma {
             return false;
         }
     }
+
+    public static class CustomMath {
+        public static float Floor(float value, int digits) {
+            float c = Mathf.Pow(10f, digits);
+            return Mathf.Floor(value * c) / c;
+        }
+    }
 }

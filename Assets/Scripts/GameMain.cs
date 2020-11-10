@@ -1,11 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using CustomPhysics;
 
 public class GameMain : MonoBehaviour
 {
     [SerializeField] PlayerControl _player = null;
     [SerializeField] InputControl _input = null;
+
+    void Awake() {
+        CollisionManager.GetInstance().Initalize();
+    }
 
     void Start() {
         _player.Initalize();
@@ -15,9 +20,5 @@ public class GameMain : MonoBehaviour
     void Update() {
         _input.Progress();
         _player.Progress();
-    }
-
-    void FixedUpdate() {
-        _player.FixedProgress();
     }
 }

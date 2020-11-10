@@ -32,9 +32,7 @@ public class PlatformController : RaycastController {
 	}
 
 	void FixedUpdate () {
-
-		UpdateRaycastOrigins ();
-
+		UpdateRaycastOrigins();
 		Vector3 velocity = CalculatePlatformMovement();
 
 		CalculatePassengerMovement(velocity);
@@ -69,7 +67,7 @@ public class PlatformController : RaycastController {
 			fromWaypointIndex ++;
 
 			if (!cyclic) {
-				if (fromWaypointIndex >= globalWaypoints.Length-1) {
+				if (fromWaypointIndex >= globalWaypoints.Length - 1) {
 					fromWaypointIndex = 0;
 					System.Array.Reverse(globalWaypoints);
 				}
@@ -101,7 +99,7 @@ public class PlatformController : RaycastController {
 
 		// Vertically moving platform
 		if (velocity.y != 0) {
-			float rayLength = Mathf.Abs (velocity.y) + _skinWidth;
+			float rayLength = Mathf.Abs(velocity.y) + _skinWidth;
 			
 			for (int i = 0; i < _verticalRayCount; i ++) {
 				Vector2 rayOrigin = (directionY == -1)?raycastOrigins.bottomLeft:raycastOrigins.topLeft;
@@ -122,7 +120,7 @@ public class PlatformController : RaycastController {
 
 		// Horizontally moving platform
 		if (velocity.x != 0) {
-			float rayLength = Mathf.Abs (velocity.x) + _skinWidth;
+			float rayLength = Mathf.Abs(velocity.x) + _skinWidth;
 			
 			for (int i = 0; i < _horizontalRayCount; i ++) {
 				Vector2 rayOrigin = (directionX == -1)?raycastOrigins.bottomLeft:raycastOrigins.bottomRight;
@@ -133,17 +131,17 @@ public class PlatformController : RaycastController {
 					if (!movedPassengers.Contains(hit.transform)) {
 						movedPassengers.Add(hit.transform);
 						float pushX = velocity.x - (hit.distance - _skinWidth) * directionX;
-						float pushY = -_skinWidth;
+						float pushY = _skinWidth;
 						
-						passengerMovement.Add(new PassengerMovement(hit.transform,new Vector3(pushX,pushY), false, true));
+						passengerMovement.Add(new PassengerMovement(hit.transform,new Vector3(pushX , pushY), false, true));
 					}
 				}
 			}
 		}
-
+		
 		// Passenger on top of a horizontally or downward moving platform
 		if (directionY == -1 || velocity.y == 0 && velocity.x != 0) {
-			float rayLength = _skinWidth * 2;
+			float rayLength = _skinWidth * 2f;
 			
 			for (int i = 0; i < _verticalRayCount; i ++) {
 				Vector2 rayOrigin = raycastOrigins.topLeft + Vector2.right * (_verticalRaySpacing * i);

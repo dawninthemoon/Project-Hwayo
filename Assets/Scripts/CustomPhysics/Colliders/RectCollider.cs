@@ -26,9 +26,14 @@ namespace CustomPhysics {
 
     public class RectCollider : CustomCollider {
         [SerializeField] Rectangle _rect;
+        protected override void Start() {
+            base.Start();
+        }
         public Rectangle GetBounds() {
             Rectangle newRectangle = _rect;
             newRectangle.center += (Vector2)transform.position;
+            newRectangle.width *= transform.localScale.x;
+            newRectangle.height *= transform.localScale.y;
             newRectangle.rotation += transform.localRotation.eulerAngles.z;
             return newRectangle;
         }
@@ -50,23 +55,25 @@ namespace CustomPhysics {
 
         public Vector2 GetWidthVector() {
             Vector2 ret;
-            ret.x = _rect.width * Mathf.Cos(_rect.rotation) * 0.5f;
-            ret.y = -_rect.width * Mathf.Sin(_rect.rotation) * 0.5f;
+            ret.x = _rect.width * transform.localScale.x * Mathf.Cos(_rect.rotation) * 0.5f;
+            ret.y = -_rect.width * transform.localScale.x * Mathf.Sin(_rect.rotation) * 0.5f;
             return ret;
         }
         public Vector2 GetHeightVector() {
             Vector2 ret;
-            ret.x = _rect.height * Mathf.Cos(_rect.rotation) * 0.5f;
-            ret.y = -_rect.height * Mathf.Sin(_rect.rotation) * 0.5f;
+            ret.x = _rect.height * transform.localScale.y * Mathf.Cos(_rect.rotation) * 0.5f;
+            ret.y = -_rect.height * transform.localScale.y * Mathf.Sin(_rect.rotation) * 0.5f;
             return ret;
         }
 
         void OnDrawGizmos() {
             Vector2 cur = (Vector2)transform.position + _rect.center;
-            Vector2 p00 = new Vector2(cur.x - _rect.width * 0.5f, cur.y + _rect.height * 0.5f);
-            Vector2 p10 = new Vector2(cur.x + _rect.width * 0.5f, cur.y + _rect.height * 0.5f);
-            Vector2 p11 = new Vector2(cur.x + _rect.width * 0.5f, cur.y - _rect.height * 0.5f);
-            Vector2 p01 = new Vector2(cur.x - _rect.width * 0.5f, cur.y - _rect.height * 0.5f);
+            float width = _rect.width * transform.localScale.x;
+            float height = _rect.height * transform.localScale.y;
+            Vector2 p00 = new Vector2(cur.x - width * 0.5f, cur.y + height * 0.5f);
+            Vector2 p10 = new Vector2(cur.x + width * 0.5f, cur.y + height * 0.5f);
+            Vector2 p11 = new Vector2(cur.x + width * 0.5f, cur.y - height * 0.5f);
+            Vector2 p01 = new Vector2(cur.x - width * 0.5f, cur.y - height * 0.5f);
             
             float rotation = _rect.rotation + transform.localRotation.eulerAngles.z;
             float radian = rotation * Mathf.Deg2Rad;

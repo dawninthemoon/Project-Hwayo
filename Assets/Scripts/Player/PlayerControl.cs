@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+using Aroma;
 
 [RequireComponent (typeof (GroundController))]
 public class PlayerControl : MonoBehaviour, ISetupable, ILoopable {
@@ -16,10 +16,6 @@ public class PlayerControl : MonoBehaviour, ISetupable, ILoopable {
 	}
 
 	public void Progress() {
-		
-	}
-
-	public void FixedProgress() {
 		_movementControl.CalculateVelocity(_directionalInput);
 		_movementControl.HandleWallSliding(_directionalInput);
 

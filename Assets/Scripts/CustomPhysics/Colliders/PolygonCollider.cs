@@ -32,7 +32,8 @@ namespace CustomPhysics {
     public class PolygonCollider : CustomCollider
     {
         [SerializeField] Polygon _polygon = null;
-        void Start() {
+        protected override void Start() {
+            base.Start();
             _polygon.CalculateMinMaxBounds();
         }
         public Polygon GetPolygon() => _polygon;
@@ -48,10 +49,11 @@ namespace CustomPhysics {
         public bool IsCollision(RectCollider other) => false;
 
         public override void OnCollision(CustomCollider collider) {
-            
+
         }
 
         void OnDrawGizmos() {
+            if (_polygon == null) return;
             var points = _polygon._points;
             int pLength = points.Length;
             if (pLength < 2) return;

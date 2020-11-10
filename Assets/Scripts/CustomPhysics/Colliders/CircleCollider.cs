@@ -17,6 +17,9 @@ namespace CustomPhysics {
     public class CircleCollider : CustomCollider {
         [SerializeField] Circle _circle;
         public Circle CircleShape { get { return _circle; } }
+        protected override void Start() {
+            base.Start();
+        }
         public Rectangle GetBounds() {
             Rectangle bounds = new Rectangle(_circle.center, _circle.radius * 2f, _circle.radius * 2f);
             bounds.center += (Vector2)transform.position;
