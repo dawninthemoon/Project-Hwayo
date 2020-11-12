@@ -100,11 +100,11 @@ public class GroundController : RaycastController {
 		float rayLength = Mathf.Abs(moveAmount.y) + _skinWidth;
 
 		for (int i = 0; i < _verticalRayCount; i ++) {
-			Vector2 rayOrigin = (directionY == -1) ? raycastOrigins.bottomLeft : raycastOrigins.topLeft;
+			Vector2 rayOrigin = (directionY < 0f) ? raycastOrigins.bottomLeft : raycastOrigins.topLeft;
 			rayOrigin += Vector2.right * (_verticalRaySpacing * i + moveAmount.x);
 
 			RaycastInfo info;
-			Debug.DrawRay(rayOrigin, Vector2.up * directionY, Color.green);
+			Debug.DrawRay(rayOrigin, Vector2.up * directionY * rayLength, Color.green);
 			if (CollisionManager.GetInstance().Raycast(rayOrigin, Vector2.up * directionY, rayLength, out info)) {
 				if (info.collider.Tag != null && info.collider.Tag.Equals("Through")) {
 					if (directionY == 1 || info.distance == 0) {

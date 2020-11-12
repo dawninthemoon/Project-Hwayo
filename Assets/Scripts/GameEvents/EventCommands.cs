@@ -6,12 +6,12 @@ using UnityEngine;
 
 public partial class EventCommand {
     public class SetPlayerPosition : EventCommandInterface {
-        public IEnumerator Do(SharedData shared, SharedVariable variable) {
-            var player = shared.Player;
-            LevelInfo level = shared.LevelDictionary[LevelManager.GetInstance().CurrentLevelName];
-            var entity = shared.ExecuterEntity;
+        public IEnumerator Execute(SharedData data, SharedVariable variable) {
+            var player = data.Player;
+            LevelInfo level = data.LevelDictionary[LevelManager.GetInstance().CurrentLevelName];
+            var entity = data.ExecuterEntity;
 
-            Vector3 worldPosition = shared.Grid.GetWorldPosition(entity.row, entity.column);
+            Vector3 worldPosition = data.Grid.GetWorldPosition(entity.row, entity.column);
             player.transform.position = worldPosition;
             
             yield break;
@@ -19,6 +19,6 @@ public partial class EventCommand {
     }
 
     public interface EventCommandInterface {
-        IEnumerator Do(SharedData share, SharedVariable variable);
+        IEnumerator Execute(SharedData data, SharedVariable variable);
     }
 }

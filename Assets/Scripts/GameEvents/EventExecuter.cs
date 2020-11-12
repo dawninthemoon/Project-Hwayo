@@ -26,7 +26,7 @@ public class EventExecuter {
     public IEnumerator ExecuteEvent(EntityInfo entity) {
         if (_stringCommandDic.TryGetValue(entity.name, out EventCommand.EventCommandInterface command)) {
             _sharedData.ExecuterEntity = entity;
-            IEnumerator coroutine = command.Do(_sharedData, _shraedVariable);
+            IEnumerator coroutine = command.Execute(_sharedData, _shraedVariable);
             
             while (coroutine.MoveNext()) {
                 var nestCoroutine = coroutine?.Current as YieldInstruction;

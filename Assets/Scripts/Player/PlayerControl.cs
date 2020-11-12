@@ -4,6 +4,7 @@ using Aroma;
 [RequireComponent (typeof (GroundController))]
 public class PlayerControl : MonoBehaviour, ISetupable, ILoopable {
 	PlayerMovementControl _movementControl;
+	PlayerStateControl _stateControl;
 	private Vector2 _directionalInput;
 
 	public void Initalize() {
@@ -13,6 +14,9 @@ public class PlayerControl : MonoBehaviour, ISetupable, ILoopable {
 
 		_movementControl = new PlayerMovementControl(controller, movementSetting, wallJumpSetting);
 		_movementControl.Initalize();
+
+		_stateControl = GetComponent<PlayerStateControl>();
+		_stateControl.Initalize();
 	}
 
 	public void Progress() {
@@ -22,6 +26,9 @@ public class PlayerControl : MonoBehaviour, ISetupable, ILoopable {
 		_movementControl.MovePlayer(_directionalInput);
 
 		_movementControl.PostCalculateVelocity();
+        _stateControl.ApplyAnimation(_directionalInput.x, _movementControl.Velocity.y);
+
+		_stateControl.Progress();
 	}
 
 	public void SetInputX(float horizontal) {
@@ -36,6 +43,7 @@ public class PlayerControl : MonoBehaviour, ISetupable, ILoopable {
 
 	public void OnJumpInputDown() {
 		_movementControl.OnJumpInputDown(_directionalInput);
+		_stateControl.OnJumpButtonDown();
 	}
 
 	public void OnJumpInputUp() {

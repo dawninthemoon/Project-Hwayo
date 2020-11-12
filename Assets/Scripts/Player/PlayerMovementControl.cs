@@ -23,8 +23,10 @@ public class PlayerMovementControl : ISetupable {
 
 	bool _wallSliding;
 	int _wallDirX;
-
     GroundController _controller;
+
+	public Vector3 Velocity { get { return _velocity; } }
+
     public PlayerMovementControl(GroundController controller, TBLPlayerMovement movementSetting, TBLPlayerWallJump wallJumpSetting) {
         _controller = controller;
 

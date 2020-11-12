@@ -32,8 +32,8 @@ namespace CustomPhysics {
         public Rectangle GetBounds() {
             Rectangle newRectangle = _rect;
             newRectangle.center += (Vector2)transform.position;
-            newRectangle.width *= transform.localScale.x;
-            newRectangle.height *= transform.localScale.y;
+            newRectangle.width *= Mathf.Abs(transform.localScale.x);
+            newRectangle.height *= Mathf.Abs(transform.localScale.y);
             newRectangle.rotation += transform.localRotation.eulerAngles.z;
             return newRectangle;
         }
@@ -55,8 +55,8 @@ namespace CustomPhysics {
 
         public Vector2 GetWidthVector() {
             Vector2 ret;
-            ret.x = _rect.width * transform.localScale.x * Mathf.Cos(_rect.rotation) * 0.5f;
-            ret.y = -_rect.width * transform.localScale.x * Mathf.Sin(_rect.rotation) * 0.5f;
+            ret.x = _rect.width * Mathf.Abs(transform.localScale.x) * Mathf.Cos(_rect.rotation) * 0.5f;
+            ret.y = -_rect.width * Mathf.Abs(transform.localScale.x) * Mathf.Sin(_rect.rotation) * 0.5f;
             return ret;
         }
         public Vector2 GetHeightVector() {
@@ -68,8 +68,8 @@ namespace CustomPhysics {
 
         void OnDrawGizmos() {
             Vector2 cur = (Vector2)transform.position + _rect.center;
-            float width = _rect.width * transform.localScale.x;
-            float height = _rect.height * transform.localScale.y;
+            float width = _rect.width * Mathf.Abs(transform.localScale.x);
+            float height = _rect.height * Mathf.Abs(transform.localScale.y);
             Vector2 p00 = new Vector2(cur.x - width * 0.5f, cur.y + height * 0.5f);
             Vector2 p10 = new Vector2(cur.x + width * 0.5f, cur.y + height * 0.5f);
             Vector2 p11 = new Vector2(cur.x + width * 0.5f, cur.y - height * 0.5f);
