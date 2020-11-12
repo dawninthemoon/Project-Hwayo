@@ -5,6 +5,7 @@ using Aroma;
 public class PlayerControl : MonoBehaviour, ISetupable, ILoopable {
 	PlayerMovementControl _movementControl;
 	PlayerStateControl _stateControl;
+	PlayerMeleeAttack _meleeAttack;
 	private Vector2 _directionalInput;
 
 	public void Initalize() {
@@ -15,30 +16,39 @@ public class PlayerControl : MonoBehaviour, ISetupable, ILoopable {
 		_movementControl = new PlayerMovementControl(controller, movementSetting, wallJumpSetting);
 		_movementControl.Initalize();
 
+		_meleeAttack = new PlayerMeleeAttack();
+
 		_stateControl = GetComponent<PlayerStateControl>();
-		_stateControl.Initalize();
+		_stateControl.Initalize(_meleeAttack);
 	}
 
 	public void Progress() {
 		_movementControl.CalculateVelocity(_directionalInput);
 		_movementControl.HandleWallSliding(_directionalInput);
-
 		_movementControl.MovePlayer(_directionalInput);
 
 		_movementControl.PostCalculateVelocity();
-        _stateControl.ApplyAnimation(_directionalInput.x, _movementControl.Velocity.y);
 
+		_meleeAttack.Progress();
+
+        _stateControl.ApplyAnimation(_directionalInput.x, _movementControl.Velocity.y);
 		_stateControl.Progress();
 	}
 
 	public void SetInputX(float horizontal) {
-		// IF Player is in attack progress, set horizontal to zero.
+		if (_meleeAttack.IsInAttackProgress)
+			horizontal = 0f;
 		_directionalInput.x = horizontal;
 	}
 
 	public void SetInputY(float vertical) {
-		// IF Player is in attack progress, set vertical to zero.
+		if (_meleeAttack.IsInAttackProgress)
+			vertical = 0f;
 		_directionalInput.y = vertical;
+	}
+
+	public void SetAttack(bool attackPressed) {
+		_meleeAttack.SetAttackInput(attackPressed);
 	}
 
 	public void OnJumpInputDown() {

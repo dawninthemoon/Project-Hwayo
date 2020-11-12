@@ -5,18 +5,18 @@ using UnityEngine;
 
 namespace Aroma {
     public static class VectorUtility {
-        public static float Cross(this Vector2 vec, Vector2 other) {
-            return vec.x * other.y - vec.y * other.x;
+        public static Vector3 GetScaleVec(float dir) {
+            Vector3 scale = new Vector3(dir, 1f, 1f);
+            return scale;
         }
-        public static bool Compare(this Vector2 p1, Vector2 p2, bool includeEqual = false) {
-            if (includeEqual) {
-                if (p1.x >= p2.x) return true;
-                else if ((Mathf.Abs(p1.x - p2.x) < Mathf.Epsilon) && (p1.y >= p2.y)) return true;
-                return false;
-            }
-            if (p1.x > p2.x) return true;
-            else if ((Mathf.Abs(p1.x - p2.x) < Mathf.Epsilon) && (p1.y > p2.y)) return true;
-            return false;
+        public static Vector2 ChangeXPos(this Vector2 vec, float x) {
+            Vector2 newVec = new Vector2(x, vec.y);
+            return newVec;
+        }
+
+        public static Vector3 ChangeXPos(this Vector3 vec, float x) {
+            Vector3 newVec = new Vector3(x, vec.y, vec.z);
+            return newVec;
         }
     }
 

@@ -15,10 +15,10 @@ public partial class PlayerStateControl : MonoBehaviour
         }/*
         else if (_playerAttack.RequestShoot) {
             _fsm.ChangeState(States.Shoot);
-        }
-        else if (_playerAttack.RequestedAttackCount > 0) {
-            _fsm.ChangeState(States.AttackA);
         }*/
+        else if (_meleeAttackControl.RequestedAttackCount > 0) {
+            _fsm.ChangeState(States.AttackA);
+        }
         else if (Mathf.Abs(_direction.x) > Mathf.Epsilon) {
             _fsm.ChangeState(States.Run);
         }
@@ -37,88 +37,85 @@ public partial class PlayerStateControl : MonoBehaviour
         }/*
         else if (_playerAttack.RequestShoot) {
             _fsm.ChangeState(States.Shoot);
-        }
-        else if (_playerAttack.RequestedAttackCount > 0) {
-            _fsm.ChangeState(States.AttackA);
         }*/
+        else if (_meleeAttackControl.RequestedAttackCount > 0) {
+            _fsm.ChangeState(States.AttackA);
+        }
         else if (Mathf.Abs(_direction.x) < Mathf.Epsilon) {
             _fsm.ChangeState(States.Idle);
         }
     }
 
     #endregion
-/*
+
     #region Attack
     private void AttackA_Enter() {
         _direction.x = 0f;
-        --_playerAttack.RequestedAttackCount;
-        _playerAttack.AlreadyHitColliders.Clear();
+        --_meleeAttackControl.RequestedAttackCount;
+        _meleeAttackControl.AlreadyHitColliders.Clear();
         _animator.ChangeAnimation(
-            "AttackA", 
-            false, 
+            "Attack_A", 
+            false,
+            1f,
             () => {
-                States nextState = (_playerAttack.RequestedAttackCount > 0) ? States.AttackB : States.AttackAOut;
+                States nextState = (_meleeAttackControl.RequestedAttackCount > 0) ? States.AttackB : States.AttackAOut;
                 _fsm.ChangeState(nextState);
             }
         );
     }
 
     private void AttackA_Update() {
-        _player.CanDrawHitbox = true;
         if (_animator.SpriteIndex == 0) {
-            _playerAttack.EnableMeleeAttack();
+            float faceDir = Mathf.Sign(transform.localScale.x);
+            _meleeAttackControl.EnableMeleeAttack(transform.position, faceDir);
         }
     }
 
     private void AttackB_Enter() {
-        _playerAttack.AlreadyHitColliders.Clear();
-        --_playerAttack.RequestedAttackCount;
+        _meleeAttackControl.AlreadyHitColliders.Clear();
+        --_meleeAttackControl.RequestedAttackCount;
         _animator.ChangeAnimation(
-            "AttackB", 
+            "Attack_B", 
             false,
+            1f,
             () => {
-                States nextState = (_playerAttack.RequestedAttackCount > 0) ? States.AttackA : States.IdleIn;
+                States nextState = (_meleeAttackControl.RequestedAttackCount > 0) ? States.AttackA : States.Idle;
                 _fsm.ChangeState(nextState);
             }
         );
     }
 
     private void AttackB_Update() {
-        _player.CanDrawHitbox = true;
         if (_animator.SpriteIndex == 0) {
-            _playerAttack.EnableMeleeAttack();
+            float faceDir = Mathf.Sign(transform.localScale.x);
+            _meleeAttackControl.EnableMeleeAttack(transform.position, faceDir);
         }
     }
 
     private void AttackAOut_Enter() {
-        _animator.ChangeAnimation(
-            "AttackAOut", 
-            false,
-            () => {
-                States nextState = (Mathf.Abs(_direction.x) < Mathf.Epsilon) ? States.Idle : States.Run;
-                _fsm.ChangeState(nextState);
-            }
-        );
+        States nextState = (Mathf.Abs(_direction.x) < Mathf.Epsilon) ? States.Idle : States.Run;
+        _fsm.ChangeState(nextState);
     }
-    private void AttackAir_Enter() {
-        --_playerAttack.RequestedAttackCount;
-        _playerAttack.AlreadyHitColliders.Clear();
+    private void JumpAttack_Enter() {
+        --_meleeAttackControl.RequestedAttackCount;
+        _meleeAttackControl.AlreadyHitColliders.Clear();
         _animator.ChangeAnimation(
-            "AttackAir",
+            "JumpAttack",
             false,
+            1f,
             () => {
                 _fsm.ChangeState(States.Jump);
             }
         );
     }
-    private void AttackAir_Update() {
-        _player.CanDrawHitbox = true;
+    private void JumpAttack_Update() {
         if (_animator.SpriteIndex == 0) {
-            _playerAttack.EnableMeleeAttack();
+            float faceDir = Mathf.Sign(transform.localScale.x);
+            _meleeAttackControl.EnableMeleeAttack(transform.position, faceDir);
         }
     }
     #endregion
-
+/*
     #region Shoot
 
     private void Shoot_Enter() {
@@ -142,7 +139,7 @@ public partial class PlayerStateControl : MonoBehaviour
         }
     }
 
-    private void ShootAir_Enter() {
+    private void JumpShoot_Enter() {
         _playerAttack.RequestShoot = false;
         _animator.ChangeAnimation(
             "ShootAir",
@@ -153,7 +150,7 @@ public partial class PlayerStateControl : MonoBehaviour
             }
         );
     }
-    private void ShootAir_Update() {
+    private void JumpShoot_Update() {
         Shoot_Update();
     }
 
@@ -169,10 +166,10 @@ public partial class PlayerStateControl : MonoBehaviour
         /*if (_playerAttack.RequestShoot) {
             _fsm.ChangeState(States.ShootAir);
         }
-        else if (_playerAttack.RequestedAttackCount > 0) {
-            _fsm.ChangeState(States.AttackAir);
+        else*/ if (_meleeAttackControl.RequestedAttackCount > 0) {
+            _fsm.ChangeState(States.JumpAttack);
         }
-        else*/ if (Mathf.Abs(_direction.y) < Mathf.Epsilon) {
+        else if (Mathf.Abs(_direction.y) < Mathf.Epsilon) {
             States nextState = (Mathf.Abs(_direction.x) < Mathf.Epsilon) ? States.Idle : States.Run;
             _fsm.ChangeState(nextState);
         }

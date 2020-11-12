@@ -6,23 +6,25 @@ using MonsterLove.StateMachine;
 
 public partial class PlayerStateControl : MonoBehaviour {
     public enum States { 
-        Idle, AttackA, AttackAOut, AttackB, AttackAir, Dead, Evade, Explode, 
-        Hit, Jump, Run, Slide, Shoot, ShootAir 
+        Idle, AttackA, AttackAOut, AttackB, JumpAttack, Dead, Evade, Explode, 
+        Hit, Jump, Run, Slide, Shoot, JumpShoot 
     };
-    private SpriteAtlas _spriteAtlas;
-    public States State { get => _fsm.State; }
-    private StateMachine<States> _fsm;
-    private SpriteAtlasAnimator _animator;
+    SpriteAtlas _spriteAtlas;
+    StateMachine<States> _fsm;
+    SpriteAtlasAnimator _animator;
+    PlayerMeleeAttack _meleeAttackControl;
 
     #region Non-reference Fields
-    private Vector2 _direction;
-    private bool _jumpRequested;
+    Vector2 _direction;
+    bool _jumpRequested;
     #endregion
+    public States State { get => _fsm.State; }
 
-    public void Initalize() {
+    public void Initalize(PlayerMeleeAttack meleeAttack) {
         _spriteAtlas = Resources.Load<SpriteAtlas>("Atlas/CharacterAtlas1");
         _animator = new SpriteAtlasAnimator();
         _fsm = GetComponent<StateMachineRunner>().Initialize<States>(this);
+        _meleeAttackControl = meleeAttack;
 
         _animator.Initalize(GetComponentInChildren<SpriteRenderer>(), "PLAYER_", "Idle_loop", true, 1f);
         _fsm.ChangeState(States.Idle);

@@ -20,16 +20,17 @@ public class InputControl : MonoBehaviour, ILoopable
     }
 
     private PlayerControl _model;
+    PlayerStateControl _playerStateControl;
     //private PlayerAnimator _animator;
     private InputActions _actions;
     private Dictionary<string, ActionInfo> _wasPressedAtLastFrame;
     private bool _isJumpPressed;
-    //private PlayerAnimator.States[] _inputIgnoreStates, _moveIgnoreStates;
+    private PlayerStateControl.States[] _inputIgnoreStates, _moveIgnoreStates;
 
     public void Initalize(PlayerControl character)
     {
         _model = character;
-        //_animator = _model.GetComponent<PlayerAnimator>();
+        _playerStateControl = _model.GetComponent<PlayerStateControl>();
 
         _actions = new InputActions();
 
@@ -84,16 +85,14 @@ public class InputControl : MonoBehaviour, ILoopable
         InputKeys();
     }
 
-    public void FixedProgress() { }
-
     void InputKeys() {
-        //if (CheckCannotInput()) return;
+        if (CheckCannotInput()) return;
 
         float horizontal = 0f, vertical = 0f;
-        //if (!CheckCannotMove()) {
+        if (!CheckCannotMove()) {
             horizontal = IgnoreSmallValue(_actions.Horizontal.Value);
             vertical = IgnoreSmallValue(_actions.Vertical.Value);
-        //}
+        }
         
         _model.SetInputX(horizontal);
         _model.SetInputY(vertical);
@@ -103,9 +102,9 @@ public class InputControl : MonoBehaviour, ILoopable
         else if (GetKeyUp(InputActions.JumpActionName))
             _model.OnJumpInputUp();
 
-        /*
         _model.SetAttack(GetKeyDown(InputActions.AttackActionName));
         
+        /*
         _model.AddCharge(_actions.Throw.IsPressed);
         _model.OnChargeEnd(GetKeyUp(InputActions.ThrowActionName));*/
 
@@ -128,14 +127,14 @@ public class InputControl : MonoBehaviour, ILoopable
         value = (value == 0f) ? value : Mathf.Sign(value);
         return value;
     }
-/*
+
     bool CheckCannotInput() {
-        var state = _animator.State;
+        var state = _playerStateControl.State;
 
         if (_inputIgnoreStates == null) {
-            _inputIgnoreStates = new PlayerAnimator.States[] {
-                PlayerAnimator.States.Hit,
-                PlayerAnimator.States.Dead,
+            _inputIgnoreStates = new PlayerStateControl.States[] {
+                PlayerStateControl.States.Hit,
+                PlayerStateControl.States.Dead,
             };
         }
 
@@ -143,16 +142,16 @@ public class InputControl : MonoBehaviour, ILoopable
     }
 
     bool CheckCannotMove() {
-        var state = _animator.State;
+        var state = _playerStateControl.State;
 
         if (_moveIgnoreStates == null) {
-            _moveIgnoreStates = new PlayerAnimator.States[] {
-                PlayerAnimator.States.AttackA,
-                PlayerAnimator.States.AttackB,
-                PlayerAnimator.States.Shoot,
+            _moveIgnoreStates = new PlayerStateControl.States[] {
+                PlayerStateControl.States.AttackA,
+                PlayerStateControl.States.AttackB,
+                PlayerStateControl.States.Shoot,
             };
         }
 
         return _moveIgnoreStates.Contains(state);
-    }*/
+    }
 }
