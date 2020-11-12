@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MeshParticleSystem : MonoBehaviour
 {
-    private const int MAX_QUAD_AMOUNT = 15000;
+    private const int MAX_QUAD_AMOUNT = 1500;
 
     [System.Serializable]
     public struct ParticleUVPixels {
@@ -70,12 +70,14 @@ public class MeshParticleSystem : MonoBehaviour
     }
 
     public int AddQuad(Vector3 position, float rotation, Vector3 quadSize, bool skewed, int uvIndex) {
-        if (_quadIndex >= MAX_QUAD_AMOUNT) return 0;
+        if (_quadIndex >= MAX_QUAD_AMOUNT) {
+            _quadIndex = 0;
+        }
 
         UpdateQuad(_quadIndex, position, rotation, quadSize, skewed, uvIndex);
 
         int spawnedQuadIndex = _quadIndex;
-        _quadIndex++;
+        ++_quadIndex;
 
         return spawnedQuadIndex;
     }

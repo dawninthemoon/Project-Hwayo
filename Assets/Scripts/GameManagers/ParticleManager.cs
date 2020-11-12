@@ -11,7 +11,7 @@ namespace CustomParticleSystem {
             _activeParticles = new List<CustomParticle>();
             _nameParticleSystemDic = new Dictionary<string, MeshParticleSystem>();
             _particlePool = new ObjectPool<CustomParticle>(
-                100,
+                400,
                 () => new CustomParticle(),
                 null,
                 null
