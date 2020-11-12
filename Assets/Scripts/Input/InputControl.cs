@@ -21,7 +21,6 @@ public class InputControl : MonoBehaviour, ILoopable
 
     private PlayerControl _model;
     PlayerStateControl _playerStateControl;
-    //private PlayerAnimator _animator;
     private InputActions _actions;
     private Dictionary<string, ActionInfo> _wasPressedAtLastFrame;
     private bool _isJumpPressed;
@@ -102,7 +101,10 @@ public class InputControl : MonoBehaviour, ILoopable
         else if (GetKeyUp(InputActions.JumpActionName))
             _model.OnJumpInputUp();
 
-        _model.SetAttack(GetKeyDown(InputActions.AttackActionName));
+        bool isAttackPressed = GetKeyDown(InputActions.AttackActionName);
+        if (_playerStateControl.State == PlayerStateControl.States.JumpAttack)
+            isAttackPressed = false;
+        _model.SetAttack(isAttackPressed);
         
         /*
         _model.AddCharge(_actions.Throw.IsPressed);

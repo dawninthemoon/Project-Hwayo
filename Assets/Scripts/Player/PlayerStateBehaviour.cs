@@ -104,7 +104,8 @@ public partial class PlayerStateControl : MonoBehaviour
             false,
             1f,
             () => {
-                _fsm.ChangeState(States.Jump);
+                States nextState = (Mathf.Abs(_direction.y) > 0f) ? States.Jump : States.Idle;
+                _fsm.ChangeState(nextState);
             }
         );
     }

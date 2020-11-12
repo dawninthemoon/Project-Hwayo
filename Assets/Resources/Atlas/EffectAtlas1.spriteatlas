@@ -45,7 +45,29 @@ SpriteAtlas:
     - {fileID: 102900000, guid: 1202d14ba7d37ce409ebc38a0e57ddaf, type: 3}
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
-  m_PackedSprites: []
-  m_PackedSpriteNamesToIndex: []
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 690a61e2dfb1ac6499f32dba73c5c27c, type: 3}
+  - {fileID: 21300000, guid: 24382c24f4edb2a449a9af57da3ca6bd, type: 3}
+  - {fileID: 21300000, guid: 334bea9472f130c439fbf395a9a29847, type: 3}
+  - {fileID: 21300000, guid: 4f0457353dd9d8b4ba07e956e310e8c6, type: 3}
+  - {fileID: 21300000, guid: 2487f4861b829294a886db62431b2ac6, type: 3}
+  - {fileID: 21300000, guid: a1875af97d06aed42b64824ab9affef2, type: 3}
+  - {fileID: 21300000, guid: 8d341cca3c8a5a14e897ace2794af0db, type: 3}
+  - {fileID: 21300000, guid: 9469d23c14240ff458c2c5fd53eecd8a, type: 3}
+  - {fileID: 21300000, guid: 5fc4042d735c23f4fa69dd39117ec9cc, type: 3}
+  - {fileID: 21300000, guid: 2cd49f1f4bf773b41855445a18a8e075, type: 3}
+  - {fileID: 21300000, guid: 133eea2f3db0dbb4abb7e80df9549b63, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - EFFECT_Glare_strip2
+  - EFFECT_FireSmoke_strip3
+  - EFFECT_Fire_strip3
+  - EFFECT_Iceblock_strip2
+  - EFFECT_Twinkle_strip1
+  - EFFECT_Snowflake_strip4
+  - EFFECT_IceFlake_strip3
+  - EFFECT_Dust_strip3
+  - EFFECT_Sphere_strip6
+  - EFFECT_IceSmoke_strip3
+  - EFFECT_Hit_strip1
   m_Tag: EffectAtlas1
   m_IsVariant: 0
