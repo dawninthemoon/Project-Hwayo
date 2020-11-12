@@ -137,6 +137,9 @@ public class MeshParticleSystem : MonoBehaviour
     }
 
     public void LateProgress() {
+        if (_updateVertices || _updateUV || _updateTriangles)
+            _mesh.RecalculateBounds();
+
         if (_updateVertices) {
             _mesh.vertices = _vertices;
             _updateVertices = false;
@@ -149,7 +152,5 @@ public class MeshParticleSystem : MonoBehaviour
             _mesh.triangles = _triangles;
             _updateTriangles = false;
         }
-        if (_updateVertices || _updateUV || _updateTriangles)
-            _mesh.RecalculateBounds();
     }
 }

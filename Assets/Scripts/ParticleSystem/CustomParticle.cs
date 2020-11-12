@@ -13,6 +13,7 @@ namespace CustomParticleSystem {
         public float friction; 
         public float lifeTime; 
         public float scale, scaleRate;
+        public float animationSpeed;
         #endregion
         MeshParticleSystem _meshParticleSystem;
         Vector2 _defaultQuadSize;
@@ -29,6 +30,7 @@ namespace CustomParticleSystem {
             _uvIndexTimerMax = timerMax;
             _maxIndex = system.GetMaxIndex();
             _uvIndex = 0;
+            _uvIndexTimer = 0f;
 
             _quadIndex = _meshParticleSystem.AddQuad(position, 0f, quadSize, false, _uvIndex);
             _meshParticleSystem.UpdateQuad(_quadIndex, position, angle, _defaultQuadSize * scale, false, _uvIndex);
@@ -41,7 +43,7 @@ namespace CustomParticleSystem {
 
         public void Progress() {
             UpdateFields();
-            _uvIndexTimer += Time.deltaTime;
+            _uvIndexTimer += Time.deltaTime * animationSpeed;
 
             if (_uvIndexTimer >= _uvIndexTimerMax) {
                 _uvIndexTimer -= _uvIndexTimerMax;

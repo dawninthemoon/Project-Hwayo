@@ -50,7 +50,8 @@ namespace CustomParticleSystem {
                         float friction, 
                         float lifeTime, 
                         float scale = 1f, 
-                        float scaleRate = 0f) {
+                        float scaleRate = 0f,
+                        float animationSpeed = 1f) {
             var particle = _particlePool.GetObject();
 
             #region Initalize
@@ -63,6 +64,7 @@ namespace CustomParticleSystem {
             particle.lifeTime = lifeTime;
             particle.scale = scale;
             particle.scaleRate = scaleRate;
+            particle.animationSpeed = animationSpeed;
             #endregion
         
             if (_nameParticleSystemDic.TryGetValue(effectName, out MeshParticleSystem particleSystem)) {
