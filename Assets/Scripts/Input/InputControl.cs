@@ -96,10 +96,12 @@ public class InputControl : MonoBehaviour, ILoopable
         _model.SetInputX(horizontal);
         _model.SetInputY(vertical);
 
-        if (GetKeyDown(InputActions.JumpActionName))
-            _model.OnJumpInputDown();
-        else if (GetKeyUp(InputActions.JumpActionName))
-            _model.OnJumpInputUp();
+        if (!CheckCannotJump()) {
+            if (GetKeyDown(InputActions.JumpActionName))
+                _model.OnJumpInputDown();
+            else if (GetKeyUp(InputActions.JumpActionName))
+                _model.OnJumpInputUp();
+        }
 
         bool isAttackPressed = GetKeyDown(InputActions.AttackActionName);
         if (_playerStateControl.State == PlayerStateControl.States.JumpAttack)
@@ -155,5 +157,10 @@ public class InputControl : MonoBehaviour, ILoopable
         }
 
         return _moveIgnoreStates.Contains(state);
+    }
+
+    bool CheckCannotJump() {
+        var state = _playerStateControl.State;
+        return (state == PlayerStateControl.States.AttackA) || (state == PlayerStateControl.States.AttackB);
     }
 }
