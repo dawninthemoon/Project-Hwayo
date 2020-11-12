@@ -4,9 +4,12 @@ using UnityEngine;
 
 public partial class PlayerStateControl : MonoBehaviour
 {
+    static bool AleadyJumpAttacked = false;
+
     #region IDLE
     private void Idle_Enter() {
-        _animator.ChangeAnimation("Idle_loop", true);
+        _animator.ChangeAnimation("Idle_loop", true, 0.5f);
+        AleadyJumpAttacked = false;
     }
 
     private void Idle_Update() {
@@ -92,20 +95,21 @@ public partial class PlayerStateControl : MonoBehaviour
         }
     }
 
-    private void AttackAOut_Enter() {
-        States nextState = (Mathf.Abs(_direction.x) < Mathf.Epsilon) ? States.Idle : States.Run;
-        _fsm.ChangeState(nextState);
-    }
     private void JumpAttack_Enter() {
+        AleadyJumpAttacked = true;
         --_meleeAttackControl.RequestedAttackCount;
         _meleeAttackControl.AlreadyHitColliders.Clear();
         _animator.ChangeAnimation(
             "JumpAttack",
             false,
-            1f,
+            1.25f,
             () => {
-                States nextState = (Mathf.Abs(_direction.y) > 0f) ? States.Jump : States.Idle;
-                _fsm.ChangeState(nextState);
+                if(_direction.y == 0f) {
+                    _fsm.ChangeState(States.Idle);
+                }
+                else if(_direction.y < 0f) {
+                    _fsm.ChangeState(States.Jump);
+                }
             }
         );
     }
@@ -158,24 +162,35 @@ public partial class PlayerStateControl : MonoBehaviour
     #endregion*/
 
     #region JUMP
+     static float FlightRange = 20f;
+
     private void Jump_Enter() {
         _jumpRequested = false;
         _animator.ChangeAnimation("Jump");
+        if (State == States.JumpAttack) _animator.SpriteIndex = 2;
     }
 
     private void Jump_Update() {
         /*if (_playerAttack.RequestShoot) {
             _fsm.ChangeState(States.ShootAir);
         }
-        else*/ if (_meleeAttackControl.RequestedAttackCount > 0) {
+        else*/ if (!AleadyJumpAttacked && _meleeAttackControl.RequestedAttackCount > 0) {
             _fsm.ChangeState(States.JumpAttack);
         }
         else if (Mathf.Abs(_direction.y) < Mathf.Epsilon) {
             States nextState = (Mathf.Abs(_direction.x) < Mathf.Epsilon) ? States.Idle : States.Run;
             _fsm.ChangeState(nextState);
         }
-        if ((_animator.SpriteIndex > 2) && Mathf.Sign(_direction.y) > 0f) {
-            --_animator.SpriteIndex;
+        
+        if (State == States.JumpAttack) return;
+        if(_direction.y < -FlightRange) {
+            _animator.SpriteIndex = 3;
+        }
+        else if (_direction.y > FlightRange) {
+            _animator.SpriteIndex = 1;
+        }
+        else {
+            _animator.SpriteIndex = 2;
         }
     }
     #endregion

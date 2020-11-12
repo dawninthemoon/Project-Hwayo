@@ -36,7 +36,7 @@ public partial class PlayerStateControl : MonoBehaviour {
 
     public void ApplyAnimation(float dirX, float velocityY) {
         _direction.x = dirX;
-        _direction.y = (velocityY > 0f) ? 1f : ((velocityY < 0f) ? -1f : 0f);
+        _direction.y = velocityY;
 
         if (Mathf.Abs(dirX) > Mathf.Epsilon) {
             SetDirection(dirX);
