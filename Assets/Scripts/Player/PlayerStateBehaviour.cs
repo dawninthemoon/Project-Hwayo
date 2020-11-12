@@ -4,12 +4,18 @@ using UnityEngine;
 
 public partial class PlayerStateControl : MonoBehaviour
 {
-    static bool AleadyJumpAttacked = false;
+    #region Ready
+    bool AleadyJumpAttacked = false;
+    private void Ready_Enter() {
+        AleadyJumpAttacked = false;
+        States nextState = (Mathf.Abs(_direction.x) < Mathf.Epsilon) ? States.Idle : States.Run;
+        _fsm.ChangeState(nextState);
+    }
+    #endregion
 
     #region IDLE
     private void Idle_Enter() {
         _animator.ChangeAnimation("Idle_loop", true, 0.5f);
-        AleadyJumpAttacked = false;
     }
 
     private void Idle_Update() {
@@ -61,7 +67,7 @@ public partial class PlayerStateControl : MonoBehaviour
             false,
             1f,
             () => {
-                States nextState = (_meleeAttackControl.RequestedAttackCount > 0) ? States.AttackB : States.AttackAOut;
+                States nextState = (_meleeAttackControl.RequestedAttackCount > 0) ? States.AttackB : States.Ready;
                 _fsm.ChangeState(nextState);
             }
         );
@@ -82,7 +88,7 @@ public partial class PlayerStateControl : MonoBehaviour
             false,
             1f,
             () => {
-                States nextState = (_meleeAttackControl.RequestedAttackCount > 0) ? States.AttackA : States.Idle;
+                States nextState = (_meleeAttackControl.RequestedAttackCount > 0) ? States.AttackA : States.Ready;
                 _fsm.ChangeState(nextState);
             }
         );
@@ -105,7 +111,7 @@ public partial class PlayerStateControl : MonoBehaviour
             1.25f,
             () => {
                 if(_direction.y == 0f) {
-                    _fsm.ChangeState(States.Idle);
+                    _fsm.ChangeState(States.Ready);
                 }
                 else if(_direction.y < 0f) {
                     _fsm.ChangeState(States.Jump);
@@ -178,8 +184,7 @@ public partial class PlayerStateControl : MonoBehaviour
             _fsm.ChangeState(States.JumpAttack);
         }
         else if (Mathf.Abs(_direction.y) < Mathf.Epsilon) {
-            States nextState = (Mathf.Abs(_direction.x) < Mathf.Epsilon) ? States.Idle : States.Run;
-            _fsm.ChangeState(nextState);
+            _fsm.ChangeState(States.Ready);
         }
         
         if (State == States.JumpAttack) return;

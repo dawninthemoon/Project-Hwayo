@@ -6,7 +6,7 @@ using MonsterLove.StateMachine;
 
 public partial class PlayerStateControl : MonoBehaviour {
     public enum States { 
-        Idle, AttackA, AttackAOut, AttackB, JumpAttack, Dead, Evade, Explode, 
+        Idle, AttackA, AttackB, Ready, JumpAttack, Dead, Evade, Explode, 
         Hit, Jump, Run, Slide, Shoot, JumpShoot 
     };
     SpriteAtlas _spriteAtlas;
