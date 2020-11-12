@@ -20,8 +20,10 @@ namespace CustomPhysics {
     public class CollisionManager : Singleton<CollisionManager>, ISetupable, ILoopable {
         static Vector2[] _cachedVectorArr;
         List<CustomCollider> _colliders;
+        List<PolygonCollider> _tileColliders;
         public void Initalize() {
             _cachedVectorArr = new Vector2[4];
+            _tileColliders = new List<PolygonCollider>();
             _colliders = new List<CustomCollider>();
         }
 
@@ -34,28 +36,35 @@ namespace CustomPhysics {
         public void AddCollider(CustomCollider collider) {
             _colliders.Add(collider);
         }
-
+        public void ClearTileColliders() {
+            _tileColliders.Clear();
+        }
+        public void AddTileCollider(Vector2[] points) {
+            PolygonCollider collider = new GameObject().AddComponent<PolygonCollider>();
+            collider.Initalize(points);
+            _tileColliders.Add(collider);
+        }
         public bool IsCollision(Polygon p1, Vector2 p1Pos, Polygon p2, Vector2 p2Pos) {
-            int p1Length = p1._points.Length;
-            int p2Length = p2._points.Length;
+            int p1Length = p1.points.Length;
+            int p2Length = p2.points.Length;
 
             for (int i = 0; i < p1Length; ++i)
-                p1._points[i] += p1Pos + p1._offset;
+                p1.points[i] += p1Pos + p1.offset;
             for (int i = 0; i < p2Length; ++i)
-                p2._points[i] += p2Pos + p2._offset;
+                p2.points[i] += p2Pos + p2.offset;
 
             bool isCollision = CheckProjection(p1, p2);
 
             for (int i = 0; i < p1Length; ++i)
-                p1._points[i] -= (p1Pos + p1._offset);
+                p1.points[i] -= (p1Pos + p1.offset);
             for (int i = 0; i < p2Length; ++i)
-                p2._points[i] -= (p2Pos + p2._offset);
+                p2.points[i] -= (p2Pos + p2.offset);
             
             return isCollision;
         }
         bool CheckProjection(Polygon p1, Polygon p2) {
-            int p1Length = p1._points.Length;
-            int p2Length = p2._points.Length;
+            int p1Length = p1.points.Length;
+            int p2Length = p2.points.Length;
 
             if (p1Length < 3 || p2Length < 3) return false;
 
@@ -75,15 +84,15 @@ namespace CustomPhysics {
             for (int i = 0; i < p1Length ; ++i) {
                 int nextIdx = (i + 1) % p1Length;
 
-                if (p1._points[nextIdx].x > p1._points[i].x) {
+                if (p1.points[nextIdx].x > p1.points[i].x) {
                     tmpRadian = Mathf.Atan2(
-                                    p1._points[nextIdx].y - p1._points[i].y,
-                                    p1._points[nextIdx].x - p1._points[i].x);
+                                    p1.points[nextIdx].y - p1.points[i].y,
+                                    p1.points[nextIdx].x - p1.points[i].x);
                 }
                 else {
                     tmpRadian = Mathf.Atan2(
-                                    p1._points[i].y - p1._points[nextIdx].y,
-                                    p1._points[i].x - p1._points[nextIdx].x);
+                                    p1.points[i].y - p1.points[nextIdx].y,
+                                    p1.points[i].x - p1.points[nextIdx].x);
                 }
                 tmpRadian += Mathf.PI / 2f;
                 tmpRadian = -tmpRadian;
@@ -94,8 +103,8 @@ namespace CustomPhysics {
 
                 for (int j = 0; j < p1Length ; ++j) {
                     for (int s = (j + 1) % p1Length; s < p1Length; ++s) {
-                        p1X1 = p1._points[j].x * Mathf.Cos(tmpRadian) - p1._points[j].y * Mathf.Sin(tmpRadian);
-                        p1X2 = p1._points[s].x * Mathf.Cos(tmpRadian) - p1._points[s].y * Mathf.Sin(tmpRadian);
+                        p1X1 = p1.points[j].x * Mathf.Cos(tmpRadian) - p1.points[j].y * Mathf.Sin(tmpRadian);
+                        p1X2 = p1.points[s].x * Mathf.Cos(tmpRadian) - p1.points[s].y * Mathf.Sin(tmpRadian);
 
                         if (p1X1 > p1X2) {
                             float tmpChangeValue = p1X1;
@@ -119,8 +128,8 @@ namespace CustomPhysics {
 
                 for (int j = 0; j < p2Length; ++j) {
                     for (int s = (j + 1) % p2Length; s < p2Length; ++s) {
-                        p2X1 = p2._points[j].x * Mathf.Cos(tmpRadian) - p2._points[j].y * Mathf.Sin(tmpRadian);
-                        p2X2 = p2._points[s].x * Mathf.Cos(tmpRadian) - p2._points[s].y * Mathf.Sin(tmpRadian);
+                        p2X1 = p2.points[j].x * Mathf.Cos(tmpRadian) - p2.points[j].y * Mathf.Sin(tmpRadian);
+                        p2X2 = p2.points[s].x * Mathf.Cos(tmpRadian) - p2.points[s].y * Mathf.Sin(tmpRadian);
 
                         if (p2X1 > p2X2) {
                             float tmpChangeValue = p2X1;
@@ -202,7 +211,6 @@ namespace CustomPhysics {
             ret.y = vec.y / size;
             return ret;
         }
-
         public bool Raycast(Vector2 origin, Vector2 dir, float length, out RaycastInfo info) {
             int numOfColliders = _colliders.Count;
             for (int i = 0; i < numOfColliders; ++i) {
@@ -216,10 +224,9 @@ namespace CustomPhysics {
             info = new RaycastInfo();
             return false;
         }
-
         public bool Raycast(Vector2 origin, Vector2 dir, PolygonCollider collider, out RaycastInfo info) {
             var polygon = collider.GetPolygon();
-            var points = polygon._points;
+            var points = polygon.points;
             int length = points.Length;
 
             info = new RaycastInfo();
@@ -230,8 +237,8 @@ namespace CustomPhysics {
             Vector2 c = Vector2.zero;
 
             for (int i = 0; i < length; ++i) {
-                Vector2 p1 = points[i] + colliderPos + polygon._offset;
-                Vector2 p2 = points[(i + 1) % length] + colliderPos + polygon._offset;
+                Vector2 p1 = points[i] + colliderPos + polygon.offset;
+                Vector2 p2 = points[(i + 1) % length] + colliderPos + polygon.offset;
 
                 bool intersects = RayLineIntersection(origin, origin + dir, p1, p2, ref c);
                 if (intersects) {
@@ -241,7 +248,6 @@ namespace CustomPhysics {
 
             return (info.distance < Mathf.Infinity);
         }
-
         void UpdateRaycastInfo(Vector2 origin, Vector2 p1, Vector2 p2, Vector2 c, ref RaycastInfo info) {
             float dist = Vector2.Distance(origin, c);
             if (dist < info.distance) {
@@ -252,7 +258,6 @@ namespace CustomPhysics {
                 info.distance = dist;
             }
         }
-
         bool RayLineIntersection(Vector2 a1, Vector2 a2, Vector2 b1, Vector2 b2, ref Vector2 c) {
             var dax = (a1.x - a2.x);
             var dbx = (b1.x - b2.x);
@@ -276,7 +281,6 @@ namespace CustomPhysics {
             if ((dax > 0f && i.x > a1.x) || (dax < 0f && i.x < a1.x)) return false; 
             return true;
 	    }
-
         bool IsInRect(Vector2 a, Vector2 b, Vector2 c) {
             float minX = Mathf.Min(b.x, c.x), maxX = Mathf.Max(b.x, c.x);
             float minY = Mathf.Min(b.y, c.y), maxY = Mathf.Max(b.y, c.y);

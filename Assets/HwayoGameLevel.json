@@ -1,0 +1,837 @@
+{
+    "items": [
+        {
+            "width": 16,
+            "height": 16,
+            "levelName": "Default Level 0",
+            "originPosition": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "tilesets": [
+                {
+                    "tileInfo": [
+                        {
+                            "row": 0,
+                            "column": 0,
+                            "textureIndex": 64
+                        },
+                        {
+                            "row": 1,
+                            "column": 0,
+                            "textureIndex": 32
+                        },
+                        {
+                            "row": 2,
+                            "column": 0,
+                            "textureIndex": 32
+                        },
+                        {
+                            "row": 3,
+                            "column": 0,
+                            "textureIndex": 32
+                        },
+                        {
+                            "row": 4,
+                            "column": 0,
+                            "textureIndex": 0
+                        },
+                        {
+                            "row": 0,
+                            "column": 1,
+                            "textureIndex": 65
+                        },
+                        {
+                            "row": 1,
+                            "column": 1,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 2,
+                            "column": 1,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 3,
+                            "column": 1,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 4,
+                            "column": 1,
+                            "textureIndex": 1
+                        },
+                        {
+                            "row": 0,
+                            "column": 2,
+                            "textureIndex": 65
+                        },
+                        {
+                            "row": 1,
+                            "column": 2,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 2,
+                            "column": 2,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 3,
+                            "column": 2,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 4,
+                            "column": 2,
+                            "textureIndex": 1
+                        },
+                        {
+                            "row": 0,
+                            "column": 3,
+                            "textureIndex": 65
+                        },
+                        {
+                            "row": 1,
+                            "column": 3,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 2,
+                            "column": 3,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 3,
+                            "column": 3,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 4,
+                            "column": 3,
+                            "textureIndex": 1
+                        },
+                        {
+                            "row": 0,
+                            "column": 4,
+                            "textureIndex": 65
+                        },
+                        {
+                            "row": 1,
+                            "column": 4,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 2,
+                            "column": 4,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 3,
+                            "column": 4,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 4,
+                            "column": 4,
+                            "textureIndex": 1
+                        },
+                        {
+                            "row": 0,
+                            "column": 5,
+                            "textureIndex": 65
+                        },
+                        {
+                            "row": 1,
+                            "column": 5,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 2,
+                            "column": 5,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 3,
+                            "column": 5,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 4,
+                            "column": 5,
+                            "textureIndex": 1
+                        },
+                        {
+                            "row": 0,
+                            "column": 6,
+                            "textureIndex": 65
+                        },
+                        {
+                            "row": 1,
+                            "column": 6,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 2,
+                            "column": 6,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 3,
+                            "column": 6,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 4,
+                            "column": 6,
+                            "textureIndex": 1
+                        },
+                        {
+                            "row": 0,
+                            "column": 7,
+                            "textureIndex": 65
+                        },
+                        {
+                            "row": 1,
+                            "column": 7,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 2,
+                            "column": 7,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 3,
+                            "column": 7,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 4,
+                            "column": 7,
+                            "textureIndex": 1
+                        },
+                        {
+                            "row": 0,
+                            "column": 8,
+                            "textureIndex": 65
+                        },
+                        {
+                            "row": 1,
+                            "column": 8,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 2,
+                            "column": 8,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 3,
+                            "column": 8,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 4,
+                            "column": 8,
+                            "textureIndex": 1
+                        },
+                        {
+                            "row": 0,
+                            "column": 9,
+                            "textureIndex": 65
+                        },
+                        {
+                            "row": 1,
+                            "column": 9,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 2,
+                            "column": 9,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 3,
+                            "column": 9,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 4,
+                            "column": 9,
+                            "textureIndex": 1
+                        },
+                        {
+                            "row": 0,
+                            "column": 10,
+                            "textureIndex": 65
+                        },
+                        {
+                            "row": 1,
+                            "column": 10,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 2,
+                            "column": 10,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 3,
+                            "column": 10,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 4,
+                            "column": 10,
+                            "textureIndex": 1
+                        },
+                        {
+                            "row": 0,
+                            "column": 11,
+                            "textureIndex": 65
+                        },
+                        {
+                            "row": 1,
+                            "column": 11,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 2,
+                            "column": 11,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 3,
+                            "column": 11,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 4,
+                            "column": 11,
+                            "textureIndex": 1
+                        },
+                        {
+                            "row": 0,
+                            "column": 12,
+                            "textureIndex": 65
+                        },
+                        {
+                            "row": 1,
+                            "column": 12,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 2,
+                            "column": 12,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 3,
+                            "column": 12,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 4,
+                            "column": 12,
+                            "textureIndex": 1
+                        },
+                        {
+                            "row": 0,
+                            "column": 13,
+                            "textureIndex": 65
+                        },
+                        {
+                            "row": 1,
+                            "column": 13,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 2,
+                            "column": 13,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 3,
+                            "column": 13,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 4,
+                            "column": 13,
+                            "textureIndex": 1
+                        },
+                        {
+                            "row": 0,
+                            "column": 14,
+                            "textureIndex": 65
+                        },
+                        {
+                            "row": 1,
+                            "column": 14,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 2,
+                            "column": 14,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 3,
+                            "column": 14,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 4,
+                            "column": 14,
+                            "textureIndex": 1
+                        },
+                        {
+                            "row": 0,
+                            "column": 15,
+                            "textureIndex": 66
+                        },
+                        {
+                            "row": 1,
+                            "column": 15,
+                            "textureIndex": 34
+                        },
+                        {
+                            "row": 2,
+                            "column": 15,
+                            "textureIndex": 34
+                        },
+                        {
+                            "row": 3,
+                            "column": 15,
+                            "textureIndex": 34
+                        },
+                        {
+                            "row": 4,
+                            "column": 15,
+                            "textureIndex": 2
+                        }
+                    ],
+                    "tilesetName": "Tileset_Icevillage"
+                }
+            ],
+            "entities": [
+                {
+                    "row": 5,
+                    "column": 3,
+                    "name": "SetPlayerPosition",
+                    "fields": []
+                },
+                {
+                    "row": 5,
+                    "column": 9,
+                    "name": "Default Entity",
+                    "fields": [
+                        {
+                            "name": "Field1",
+                            "value": "10"
+                        }
+                    ]
+                }
+            ],
+            "colliders": [
+                {
+                    "tag": "",
+                    "points": [
+                        {
+                            "x": 0.0,
+                            "y": 80.0
+                        },
+                        {
+                            "x": 256.0,
+                            "y": 80.0
+                        },
+                        {
+                            "x": 256.0,
+                            "y": 0.0
+                        },
+                        {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        {
+                            "x": 0.0,
+                            "y": 80.0
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "width": 16,
+            "height": 16,
+            "levelName": "Default Level",
+            "originPosition": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "tilesets": [
+                {
+                    "tileInfo": [
+                        {
+                            "row": 0,
+                            "column": 0,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 1,
+                            "column": 0,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 2,
+                            "column": 0,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 3,
+                            "column": 0,
+                            "textureIndex": 1
+                        },
+                        {
+                            "row": 0,
+                            "column": 1,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 1,
+                            "column": 1,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 2,
+                            "column": 1,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 3,
+                            "column": 1,
+                            "textureIndex": 1
+                        },
+                        {
+                            "row": 0,
+                            "column": 2,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 1,
+                            "column": 2,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 2,
+                            "column": 2,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 3,
+                            "column": 2,
+                            "textureIndex": 1
+                        },
+                        {
+                            "row": 0,
+                            "column": 3,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 1,
+                            "column": 3,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 2,
+                            "column": 3,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 3,
+                            "column": 3,
+                            "textureIndex": 1
+                        },
+                        {
+                            "row": 0,
+                            "column": 4,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 1,
+                            "column": 4,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 2,
+                            "column": 4,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 3,
+                            "column": 4,
+                            "textureIndex": 1
+                        },
+                        {
+                            "row": 0,
+                            "column": 5,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 1,
+                            "column": 5,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 2,
+                            "column": 5,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 3,
+                            "column": 5,
+                            "textureIndex": 1
+                        },
+                        {
+                            "row": 0,
+                            "column": 6,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 1,
+                            "column": 6,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 2,
+                            "column": 6,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 3,
+                            "column": 6,
+                            "textureIndex": 1
+                        },
+                        {
+                            "row": 0,
+                            "column": 7,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 1,
+                            "column": 7,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 2,
+                            "column": 7,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 3,
+                            "column": 7,
+                            "textureIndex": 1
+                        },
+                        {
+                            "row": 0,
+                            "column": 8,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 1,
+                            "column": 8,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 2,
+                            "column": 8,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 3,
+                            "column": 8,
+                            "textureIndex": 1
+                        },
+                        {
+                            "row": 0,
+                            "column": 9,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 1,
+                            "column": 9,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 2,
+                            "column": 9,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 3,
+                            "column": 9,
+                            "textureIndex": 1
+                        },
+                        {
+                            "row": 0,
+                            "column": 10,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 1,
+                            "column": 10,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 2,
+                            "column": 10,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 3,
+                            "column": 10,
+                            "textureIndex": 1
+                        },
+                        {
+                            "row": 0,
+                            "column": 11,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 1,
+                            "column": 11,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 2,
+                            "column": 11,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 3,
+                            "column": 11,
+                            "textureIndex": 1
+                        },
+                        {
+                            "row": 0,
+                            "column": 12,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 1,
+                            "column": 12,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 2,
+                            "column": 12,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 3,
+                            "column": 12,
+                            "textureIndex": 1
+                        },
+                        {
+                            "row": 0,
+                            "column": 13,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 1,
+                            "column": 13,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 2,
+                            "column": 13,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 3,
+                            "column": 13,
+                            "textureIndex": 1
+                        },
+                        {
+                            "row": 0,
+                            "column": 14,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 1,
+                            "column": 14,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 2,
+                            "column": 14,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 3,
+                            "column": 14,
+                            "textureIndex": 1
+                        },
+                        {
+                            "row": 0,
+                            "column": 15,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 1,
+                            "column": 15,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 2,
+                            "column": 15,
+                            "textureIndex": 33
+                        },
+                        {
+                            "row": 3,
+                            "column": 15,
+                            "textureIndex": 1
+                        }
+                    ],
+                    "tilesetName": "Tileset_Undervillage"
+                }
+            ],
+            "entities": [
+                {
+                    "row": 4,
+                    "column": 4,
+                    "name": "SetPlayerPosition",
+                    "fields": []
+                }
+            ],
+            "colliders": [
+                {
+                    "tag": "",
+                    "points": [
+                        {
+                            "x": 0.0,
+                            "y": 64.0
+                        },
+                        {
+                            "x": 256.0,
+                            "y": 64.0
+                        },
+                        {
+                            "x": 256.0,
+                            "y": 0.0
+                        },
+                        {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        {
+                            "x": 0.0,
+                            "y": 64.0
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -9,7 +9,19 @@ public class GameMain : MonoBehaviour
     [SerializeField] InputControl _input = null;
 
     void Awake() {
+        var levelManager = LevelManager.GetInstance();
+        AssetManager.GetInstance().Initalize();
         CollisionManager.GetInstance().Initalize();
+        levelManager.Initalize();
+
+        EventCommand.SharedData sharedData = new EventCommand.SharedData(
+            _player,
+            levelManager.TileGrid,
+            levelManager.LevelDictionary
+        );
+        EventManager.GetInstance().Initalize(sharedData);
+
+        levelManager.LoadLevel(levelManager.CurrentLevelName);
     }
 
     void Start() {

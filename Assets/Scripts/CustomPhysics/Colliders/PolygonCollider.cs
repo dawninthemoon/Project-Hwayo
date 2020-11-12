@@ -5,8 +5,8 @@ using UnityEngine;
 namespace CustomPhysics {
     [System.Serializable]
     public class Polygon {
-        public Vector2[] _points;
-        public Vector2 _offset;
+        public Vector2[] points;
+        public Vector2 offset;
         Rectangle _bounds;
         public Rectangle GetBounds() => _bounds;
         public void CalculateMinMaxBounds() {
@@ -15,7 +15,7 @@ namespace CustomPhysics {
             float maxX = float.MinValue;
             float maxY = float.MinValue;
 
-            foreach (Vector2 point in _points) {
+            foreach (Vector2 point in points) {
                 if (point.x < minX) { minX = point.x; }
                 if (point.y < minY) { minY = point.y; }
                 if (point.x > maxX) { maxX = point.x; }
@@ -29,18 +29,20 @@ namespace CustomPhysics {
         }
     }
 
-    public class PolygonCollider : CustomCollider
-    {
+    public class PolygonCollider : CustomCollider {
         [SerializeField] Polygon _polygon = null;
-        protected override void Start() {
-            base.Start();
+        public void Initalize(Vector2[] points) {
+            if (_polygon == null)
+                _polygon = new Polygon();
+
+            _polygon.points = points.Clone() as Vector2[];
+            _polygon.offset = Vector2.zero;
             _polygon.CalculateMinMaxBounds();
         }
         public Polygon GetPolygon() => _polygon;
         public override bool IsCollision(CustomCollider other) {
             return IsCollision(other);
         }
-        
         public bool IsCollision(PolygonCollider other) {
             return CollisionManager.GetInstance().IsCollision(_polygon, transform.position, other.GetPolygon(), other.transform.position);
         }
@@ -54,7 +56,7 @@ namespace CustomPhysics {
 
         void OnDrawGizmos() {
             if (_polygon == null) return;
-            var points = _polygon._points;
+            var points = _polygon.points;
             int pLength = points.Length;
             if (pLength < 2) return;
 
@@ -62,7 +64,7 @@ namespace CustomPhysics {
             Vector2 cur = transform.position;
             for (int i = 0; i < pLength; ++i) {
                 int nextIdx = (i + 1) % pLength;
-                Gizmos.DrawLine(points[i] + _polygon._offset + cur, points[nextIdx] + _polygon._offset + cur);
+                Gizmos.DrawLine(points[i] + _polygon.offset + cur, points[nextIdx] + _polygon.offset + cur);
             }
         }
     }

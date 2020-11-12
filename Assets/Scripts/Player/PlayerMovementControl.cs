@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovementControl : ISetupable {
-	static readonly float _accelerationTimeAirborne = 0.2f;
-	static readonly float _accelerationTimeGrounded = 0.1f;
     float _maxJumpHeight;
 	float _minJumpHeight;
 	float _timeToJumpApex;
@@ -22,7 +20,6 @@ public class PlayerMovementControl : ISetupable {
 	float _gravity;
 	float _maxJumpVelocity;
 	float _minJumpVelocity;
-	float _velocityXSmoothing;
 
 	bool _wallSliding;
 	int _wallDirX;
@@ -57,9 +54,7 @@ public class PlayerMovementControl : ISetupable {
 
     public void CalculateVelocity(Vector2 dir) {
         float targetVelocityX = dir.x * _moveSpeed;
-        float smoothTime = (_controller.collisions.below) ? _accelerationTimeGrounded : _accelerationTimeAirborne;
-
-		_velocity.x = Mathf.SmoothDamp(_velocity.x, targetVelocityX, ref _velocityXSmoothing, smoothTime);
+		_velocity.x = targetVelocityX;
 		_velocity.y += _gravity * Time.deltaTime;
     }
 
@@ -74,7 +69,6 @@ public class PlayerMovementControl : ISetupable {
 			}
 
 			if (_timeToWallUnstick > 0f) {
-				_velocityXSmoothing = 0f;
 				_velocity.x = 0f;
 
 				if (dir.x != _wallDirX && dir.x != 0f) {

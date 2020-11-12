@@ -27,18 +27,19 @@ public class RaycastController : MonoBehaviour, ISetupable {
 
 	public void UpdateRaycastOrigins() {
 		Rectangle bounds = _collider.GetBounds();
-
-		bounds.width += (-_skinWidth * 2f);
-		bounds.height += (-_skinWidth * 2f);
+		bounds.width -= (_skinWidth * 2f);
+		bounds.height -= (_skinWidth * 2f);
 
 		raycastOrigins.bottomLeft = new Vector2(bounds.center.x - bounds.width * 0.5f, bounds.center.y - bounds.height * 0.5f);
-		raycastOrigins.bottomRight = new Vector2(bounds.center.x -+ bounds.width * 0.5f, bounds.center.y - bounds.height * 0.5f);
+		raycastOrigins.bottomRight = new Vector2(bounds.center.x + bounds.width * 0.5f, bounds.center.y - bounds.height * 0.5f);
 		raycastOrigins.topLeft = new Vector2(bounds.center.x - bounds.width * 0.5f, bounds.center.y + bounds.height * 0.5f);
 		raycastOrigins.topRight = new Vector2(bounds.center.x + bounds.width * 0.5f, bounds.center.y + bounds.height * 0.5f);
 	}
 
 	public void CalculateRaySpacing() {
 		Rectangle bounds = _collider.GetBounds();
+		bounds.width -= (_skinWidth * 2f);
+		bounds.height -= (_skinWidth * 2f);
 
 		float boundsWidth = bounds.width + (-_skinWidth * 2f);
 		float boundsHeight = bounds.height + (-_skinWidth * 2f);
