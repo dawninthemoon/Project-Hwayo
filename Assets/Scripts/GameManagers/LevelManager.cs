@@ -34,7 +34,7 @@ public class LevelManager : SingletonWithMonoBehaviour<LevelManager>, ISetupable
         string tilesetName = LevelDictionary[CurrentLevelName].tilesets[0].tilesetName;
 
         TileGrid.ResetGrid(level, level.width, level.height, level.originPosition, _tilemapVisual.UpdateHeatMapVisual);
-        var material = AssetManager.GetInstance().GetComponentInObjectBundle<Material>(tilesetName);
+        var material = AssetManager.GetInstance().GetAssetInObjectBundle<Material>(tilesetName);
         _tilemapVisual.ChangeMaterial(material);
 
         UpdateCameraClampBounds(level);
@@ -53,8 +53,8 @@ public class LevelManager : SingletonWithMonoBehaviour<LevelManager>, ISetupable
         TileGrid = new CustomGrid<TileObject>(16, curLevel.width, curLevel.height, curLevel.originPosition, _tileObjectPool.GetObject, _tileObjectPool.ReturnObject);
         
         var assetManager = AssetManager.GetInstance();
-        var tilemapVisual = assetManager.GetComponentInObjectBundle<GameObject>("TilemapVisual").GetComponent<TilemapVisual>();
-        var material = assetManager.GetComponentInObjectBundle<Material>(tilesetName);
+        var tilemapVisual = assetManager.GetAssetInObjectBundle<GameObject>("TilemapVisual").GetComponent<TilemapVisual>();
+        var material = assetManager.GetAssetInObjectBundle<Material>(tilesetName);
         
         _tilemapVisual = Instantiate(tilemapVisual);
         _tilemapVisual.Initalize(TileGrid, material);

@@ -20,6 +20,11 @@ public class BuildAsssetBundles {
         BuildNeedAssetBundle("assetbundle_object");
     }
 
+    [MenuItem("Bundles/Build Effect AssetBundles")] 
+    public static void BuildEffectAssetBundles() { 
+        BuildNeedAssetBundle("assetbundle_effect");
+    }
+
     private static void BuildNeedAssetBundle(string bundleName) {
         if (!Directory.Exists(Application.streamingAssetsPath + "/AssetBundles")) {
             Directory.CreateDirectory(Application.streamingAssetsPath + "/AssetBundles");

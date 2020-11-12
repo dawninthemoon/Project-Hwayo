@@ -1,0 +1,30 @@
+ManifestFileVersion: 0
+CRC: 3393171585
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 299f8a7e735c4a7e434126ea9c6a1d7e
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 22357172b8cea85847937e8f62d0c077
+HashAppended: 0
+ClassTypes:
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+Assets:
+- Assets/Materials/Effects/EFFECT_IceFlake_strip3.mat
+- Assets/Materials/Effects/EFFECT_Snowflake_strip4.mat
+- Assets/Materials/Effects/EFFECT_Sphere_strip6.mat
+- Assets/Materials/Effects/EFFECT_FireSmoke_strip3.mat
+- Assets/Materials/Effects/EFFECT_IceSmoke_strip3.mat
+- Assets/Materials/Effects/EFFECT_Fire_strip3.mat
+- Assets/Materials/Effects/EFFECT_Hit_strip1.mat
+- Assets/Materials/Effects/EFFECT_Iceblock_strip2.mat
+- Assets/Materials/Effects/EFFECT_Glare_strip2.mat
+- Assets/Materials/Effects/EFFECT_Dust_strip3.mat
+- Assets/Materials/Effects/EFFECT_Twinkle_strip1.mat
+Dependencies: []
