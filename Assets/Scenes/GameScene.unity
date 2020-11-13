@@ -563,6 +563,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eed18989d0776144fbc5a406b610b709, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _colliderLayer: 2
   _rect:
     center: {x: 0.5, y: 12.5}
     width: 19

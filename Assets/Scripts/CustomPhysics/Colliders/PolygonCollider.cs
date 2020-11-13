@@ -49,9 +49,9 @@ namespace CustomPhysics {
 
         public bool IsCollision(CircleCollider other) => false;
         public bool IsCollision(RectCollider other) => false;
-
-        public override void OnCollision(CustomCollider collider) {
-
+        public override void OnCollision(CustomCollider collider) { }
+        public override Rectangle GetBounds() {
+            return _polygon.GetBounds();
         }
 
         void OnDrawGizmos() {

@@ -29,7 +29,7 @@ namespace CustomPhysics {
         protected override void Start() {
             base.Start();
         }
-        public Rectangle GetBounds() {
+        public override Rectangle GetBounds() {
             Rectangle newRectangle = _rect;
             newRectangle.center += (Vector2)transform.position;
             newRectangle.width *= Mathf.Abs(transform.localScale.x);

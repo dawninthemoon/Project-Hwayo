@@ -21,16 +21,36 @@ namespace CustomPhysics {
         static Vector2[] _cachedVectorArr;
         List<CustomCollider> _colliders;
         List<PolygonCollider> _tileColliders;
+        QuadTree<CustomCollider> _quadTree;
+        List<CustomCollider> _adjustObjectsList;
+        
         public void Initalize() {
+            _quadTree = new QuadTree<CustomCollider>(0, new Rectangle(0f, 0f, 1000f, 1000f));
             _cachedVectorArr = new Vector2[4];
             _tileColliders = new List<PolygonCollider>();
             _colliders = new List<CustomCollider>();
+            _adjustObjectsList = new List<CustomCollider>();
         }
 
         public void Progress() {
+            _quadTree.Clear();
+
             int numOfColliders = _colliders.Count;
             for (int i = 0; i < numOfColliders; ++i) {
-                
+                _quadTree.Insert(_colliders[i]);
+            }
+
+            for (int i = 0; i < numOfColliders; ++i) {
+                _adjustObjectsList.Clear();
+                _quadTree.GetObjects(_adjustObjectsList, _colliders[i].GetBounds());
+
+                int numOfAdjustObjects = _adjustObjectsList.Count;
+                for (int j = 0; j < numOfAdjustObjects; ++j) {
+                    if (_colliders[i].CannotCollision(_adjustObjectsList[i].Layer)) continue;
+                    if (_colliders[i].IsCollision(_adjustObjectsList[j])) {
+                        _colliders[i].OnCollision(_adjustObjectsList[j]);
+                    }
+                }
             }
         }
         public void AddCollider(CustomCollider collider) {
@@ -41,6 +61,7 @@ namespace CustomPhysics {
         }
         public void AddTileCollider(Vector2[] points) {
             PolygonCollider collider = new GameObject().AddComponent<PolygonCollider>();
+            collider.Layer = ColliderLayerMask.Ground;
             collider.Initalize(points);
             _tileColliders.Add(collider);
         }

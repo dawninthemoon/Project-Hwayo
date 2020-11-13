@@ -20,7 +20,7 @@ namespace CustomPhysics {
         protected override void Start() {
             base.Start();
         }
-        public Rectangle GetBounds() {
+        public override Rectangle GetBounds() {
             Rectangle bounds = new Rectangle(_circle.center, _circle.radius * 2f, _circle.radius * 2f);
             bounds.center += (Vector2)transform.position;
             return bounds;
