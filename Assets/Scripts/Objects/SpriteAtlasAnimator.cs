@@ -16,7 +16,7 @@ public class SpriteAtlasAnimator {
     OnAnimationEnd _animationEndCallback;
     SpriteRenderer _renderer;
 
-    public void Initalize(SpriteRenderer renderer, string prefix, string idleStateName, bool loop = false, float speed = 1f) {
+    public SpriteAtlasAnimator(SpriteRenderer renderer, string prefix, string idleStateName, bool loop = false, float speed = 1f) {
         _renderer = renderer;
         _prefix = prefix;
         ChangeAnimation(idleStateName, loop, speed);

@@ -34,11 +34,6 @@ namespace CustomPhysics {
         public bool IsCollision(CircleCollider other) {
             return CollisionManager.GetInstance().IsCollision(other, this);
         }
-
-        public override void OnCollision(CustomCollider collider) {
-
-        }
-
         void OnDrawGizmos() {
             Vector2 position = (Vector2)transform.position + _circle.center;
             Vector2 cur = position + _circle.radius * new Vector2(Mathf.Cos(0f), Mathf.Sin(0f));

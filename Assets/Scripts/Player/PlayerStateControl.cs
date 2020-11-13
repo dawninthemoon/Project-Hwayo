@@ -22,11 +22,10 @@ public partial class PlayerStateControl : MonoBehaviour {
 
     public void Initalize(PlayerMeleeAttack meleeAttack) {
         _spriteAtlas = Resources.Load<SpriteAtlas>("Atlas/CharacterAtlas1");
-        _animator = new SpriteAtlasAnimator();
+        _animator = new SpriteAtlasAnimator(GetComponentInChildren<SpriteRenderer>(), "PLAYER_", "Idle_loop", true, 1f);
         _fsm = GetComponent<StateMachineRunner>().Initialize<States>(this);
         _meleeAttackControl = meleeAttack;
 
-        _animator.Initalize(GetComponentInChildren<SpriteRenderer>(), "PLAYER_", "Idle_loop", true, 1f);
         _fsm.ChangeState(States.Idle);
     }
 
