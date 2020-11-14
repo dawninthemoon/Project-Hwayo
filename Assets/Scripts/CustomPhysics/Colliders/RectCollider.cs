@@ -80,7 +80,7 @@ namespace CustomPhysics {
             RotatePoint(ref p11);
             RotatePoint(ref p01);
 
-            Gizmos.color = Color.red;
+            Gizmos.color = _gizmoColor;
             Gizmos.DrawLine(p00, p10);
             Gizmos.DrawLine(p10, p11);
             Gizmos.DrawLine(p11, p01);

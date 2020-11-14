@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovementControl : ISetupable {
+public class GroundMovementControl : ISetupable {
     float _maxJumpHeight;
 	float _minJumpHeight;
 	float _timeToJumpApex;
@@ -24,23 +24,23 @@ public class PlayerMovementControl : ISetupable {
 	bool _wallSliding;
 	int _wallDirX;
     GroundController _controller;
-
 	public Vector3 Velocity { get { return _velocity; } }
 
-    public PlayerMovementControl(GroundController controller, TBLPlayerMovement movementSetting, TBLPlayerWallJump wallJumpSetting) {
+    public GroundMovementControl(GroundController controller, TBLGroundMovement movementSetting, TBLPlayerWallJump wallJumpSetting) {
         _controller = controller;
-
-        _maxJumpHeight = movementSetting.maxJumpHeight;
-        _minJumpHeight = movementSetting.minJumpHeight;
-        _moveSpeed = movementSetting.moveSpeed;
-        _timeToJumpApex = movementSetting.timeToJumpApex;
-
+		InitGroundMovement(movementSetting);
         _wallJumpClimb = wallJumpSetting.wallJumpClimb;
         _wallJumpOff = wallJumpSetting.wallJumpOff;
         _wallLeap = wallJumpSetting.wallLeap;
         _wallSlideSpeedMax = wallJumpSetting.wallSlideSpeedMax;
         _wallStickTime = wallJumpSetting.wallStickTime;
     }
+
+	public GroundMovementControl(
+	GroundController controller, TBLGroundMovement movementSetting) {
+		_controller = controller;
+		InitGroundMovement(movementSetting);
+	}
 
     public void Initalize() {
         _controller.Initalize();
@@ -50,7 +50,7 @@ public class PlayerMovementControl : ISetupable {
 		_minJumpVelocity = Mathf.Sqrt(2 * Mathf.Abs (_gravity) * _minJumpHeight);
     }
 
-    public void MovePlayer(Vector2 dir) {
+    public void MoveObject(Vector2 dir) {
         _controller.Move(_velocity * Time.deltaTime, dir);
     }
 
@@ -128,5 +128,13 @@ public class PlayerMovementControl : ISetupable {
 		if (_velocity.y > _minJumpVelocity) {
 			_velocity.y = _minJumpVelocity;
 		}
+	}
+
+	void InitGroundMovement(TBLGroundMovement movementSetting) {
+		_maxJumpHeight = movementSetting.maxJumpHeight;
+        _minJumpHeight = movementSetting.minJumpHeight;
+        _moveSpeed = movementSetting.moveSpeed;
+        _timeToJumpApex = movementSetting.timeToJumpApex;
+
 	}
 }

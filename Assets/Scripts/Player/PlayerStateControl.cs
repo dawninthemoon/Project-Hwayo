@@ -9,7 +9,7 @@ public partial class PlayerStateControl : MonoBehaviour {
         Idle, AttackA, AttackB, Ready, JumpAttack, Dead, Evade, Explode, 
         Hit, Jump, Run, Slide, Shoot, JumpShoot 
     };
-    SpriteAtlas _spriteAtlas;
+    [SerializeField] SpriteAtlas _spriteAtlas = null;
     StateMachine<States> _fsm;
     SpriteAtlasAnimator _animator;
     PlayerMeleeAttack _meleeAttackControl;
@@ -21,7 +21,6 @@ public partial class PlayerStateControl : MonoBehaviour {
     public States State { get => _fsm.State; }
 
     public void Initalize(PlayerMeleeAttack meleeAttack) {
-        _spriteAtlas = Resources.Load<SpriteAtlas>("Atlas/CharacterAtlas1");
         _animator = new SpriteAtlasAnimator(GetComponentInChildren<SpriteRenderer>(), "PLAYER_", "Idle_loop", true, 1f);
         _fsm = GetComponent<StateMachineRunner>().Initialize<States>(this);
         _meleeAttackControl = meleeAttack;

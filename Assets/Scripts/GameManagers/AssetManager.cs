@@ -24,19 +24,21 @@ public class AssetManager : Singleton<AssetManager> {
         }
     }
 
+    public T GetComponentInObjectBundle<T>(string name) where T : Component {
+        GameObject prefab = _objectBundle.LoadAsset<GameObject>(name);
+        return prefab.GetComponent<T>();
+    }
+
     public T[] GetComponentsInObjectBundle<T>() where T : Component {
-        if (_objectBundle == null) return null;
         GameObject[] prefabs = _objectBundle.LoadAllAssets<GameObject>();
         List<T> components = new List<T>();
-
         for (int i = 0; i < prefabs.Length; i++) {
-            var component = prefabs[i].GetComponentNoAlloc<T>();
+            var component = prefabs[i].GetComponent<T>();
             if (component != null) {
                 components.Add(component);
             }
         }
-        T[] wholeObjects = _objectBundle.LoadAllAssets<T>();
-        return wholeObjects;
+        return components.ToArray();
     }
 
     public T GetAssetInObjectBundle<T>(string name) where T : Object {

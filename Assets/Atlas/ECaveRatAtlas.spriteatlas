@@ -1,0 +1,155 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ECaveRatAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 0
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 0
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: a5ea0b48edbec9548af298481cc8f0cc, type: 3}
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 8e76d7104d023844cb4a51783eaa807a, type: 3}
+  - {fileID: 21300000, guid: d4d1ce507e8dc744a9719c5d320a0c89, type: 3}
+  - {fileID: 21300000, guid: a64c32605d25a8d4fbbf99aed147e7fa, type: 3}
+  - {fileID: 21300000, guid: db55f9e04823644418aff7856bf302ee, type: 3}
+  - {fileID: 21300000, guid: 38c8f241f9453764489f53a0aece3068, type: 3}
+  - {fileID: 21300000, guid: 66a945229826aef4f89ffa7f0620e43f, type: 3}
+  - {fileID: 21300000, guid: 4e34ea52a6fc89f43b045db3bad9cd61, type: 3}
+  - {fileID: 21300000, guid: fec5c4439b620814cb911d01f7f6d288, type: 3}
+  - {fileID: 21300000, guid: 26e965730c341bb49ab29e9eeb38aa19, type: 3}
+  - {fileID: 21300000, guid: a9b199c3159bb4a43b6c24f1be0a8852, type: 3}
+  - {fileID: 21300000, guid: 35df88e37273e1d439d693c6206c757a, type: 3}
+  - {fileID: 21300000, guid: dd8a7314d417e894792611be7068633c, type: 3}
+  - {fileID: 21300000, guid: cb8a5fc4655e1934b98c3d7e991dc04a, type: 3}
+  - {fileID: 21300000, guid: 01531435122a7cb42a1f9df913a1f2bc, type: 3}
+  - {fileID: 21300000, guid: 3f4191e59b5fda74eaaac10df34b0e8c, type: 3}
+  - {fileID: 21300000, guid: e919c7e5dbeece644afc7b31d14d5ed1, type: 3}
+  - {fileID: 21300000, guid: e7b22856835ed6d439102c658671315f, type: 3}
+  - {fileID: 21300000, guid: 5c1725a69ee84254db777ba046f39e8d, type: 3}
+  - {fileID: 21300000, guid: 09fdf017348f2124087a9a262b5ce434, type: 3}
+  - {fileID: 21300000, guid: 6388cb27d88d96a41a22271bd5de2d13, type: 3}
+  - {fileID: 21300000, guid: 14e2953783c04754d9c1370ff50565c7, type: 3}
+  - {fileID: 21300000, guid: ccd5b6379589d434aad9d1f1959d227c, type: 3}
+  - {fileID: 21300000, guid: 52232ac7c95abf64cb85be62d5ff83e2, type: 3}
+  - {fileID: 21300000, guid: f8ae8b48646cca64dadd81d2a657942e, type: 3}
+  - {fileID: 21300000, guid: 47ea8588a64394846adc142287d5a50d, type: 3}
+  - {fileID: 21300000, guid: d2f0bb98e5c47864886b25a02c45a42a, type: 3}
+  - {fileID: 21300000, guid: 7515aee861c412b40b6f4f55ea0f895b, type: 3}
+  - {fileID: 21300000, guid: cfb12509a2545e54caa4adef866e9255, type: 3}
+  - {fileID: 21300000, guid: 22bdd8198813e7e42b1f05339a3b1409, type: 3}
+  - {fileID: 21300000, guid: 56fb9b9a7c6897246b449ae8033c3a70, type: 3}
+  - {fileID: 21300000, guid: 935546ea7d2c31545ade8965d4017879, type: 3}
+  - {fileID: 21300000, guid: 6d20aa0b581d3f34a8c6efae78494228, type: 3}
+  - {fileID: 21300000, guid: bab8da7b87bbfc6489cb200f83617bb7, type: 3}
+  - {fileID: 21300000, guid: f2aea18bf2925d44cbfbe0e3fcdfd764, type: 3}
+  - {fileID: 21300000, guid: 790ac8eb84cdcf94185ccf121ab4ccdf, type: 3}
+  - {fileID: 21300000, guid: b4061ffb5df9c74448d605f227fd8d08, type: 3}
+  - {fileID: 21300000, guid: 0d93458cd6b20e44fb5e16c06adc40fb, type: 3}
+  - {fileID: 21300000, guid: 16dcaebc1786ba54eacd312538451f6c, type: 3}
+  - {fileID: 21300000, guid: 1a4ad10d08eb9184fb64ae665cb919e4, type: 3}
+  - {fileID: 21300000, guid: bbc6812dbaf24d54a944e78eb97afab9, type: 3}
+  - {fileID: 21300000, guid: 1a06236dbe67d054b9397c710a31d220, type: 3}
+  - {fileID: 21300000, guid: cacef27d6dd34e742ab0702815ffec5d, type: 3}
+  - {fileID: 21300000, guid: 1cfb8cade153cdd41be29d6458e190ea, type: 3}
+  - {fileID: 21300000, guid: d6ef0edd39f5338498ca5a995871a3ce, type: 3}
+  - {fileID: 21300000, guid: ce41471e24d44c24fb6b0cf76baf2068, type: 3}
+  - {fileID: 21300000, guid: 1ce3d62ee982c8e4b95adb866993fca3, type: 3}
+  - {fileID: 21300000, guid: 2ad36b3e3836eed4e8f4e0848e8c92ae, type: 3}
+  - {fileID: 21300000, guid: 6452209e21f0b2f4e929995a3ca16b02, type: 3}
+  - {fileID: 21300000, guid: 82cf99be601397e4b81c260e946b447d, type: 3}
+  - {fileID: 21300000, guid: f796667f3dc7a864387cc4d341697840, type: 3}
+  - {fileID: 21300000, guid: bc383d9fe1b10784c832372a1b027068, type: 3}
+  - {fileID: 21300000, guid: 406b8dcff8d50864285410ae0bbe7631, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - CAVERAT_SHOOTER_Patrol6
+  - CAVERAT_Tackle4
+  - CAVERAT_Ready3
+  - CAVERAT_SHOOTER_Patrol4
+  - CAVERAT_SHOOTER_Chase3
+  - CAVERAT_Chase3
+  - CAVERAT_Ready1
+  - CAVERAT_SHOOTER_Dead2
+  - CAVERAT_SHOOTER_AttackA2
+  - CAVERAT_Patrol3
+  - CAVERAT_Ready4
+  - CAVERAT_Patrol5
+  - CAVERAT_Patrol4
+  - CAVERAT_SHOOTER_Dead1
+  - CAVERAT_SHOOTER_ReadyB4
+  - CAVERAT_Dead2
+  - CAVERAT_SHOOTER_Hit2
+  - CAVERAT_SHOOTER_Patrol5
+  - CAVERAT_SHOOTER_ReadyA1
+  - CAVERAT_Tackle2
+  - CAVERAT_SHOOTER_Hit1
+  - CAVERAT_SHOOTER_Chase2
+  - CAVERAT_SHOOTER_AttackA1
+  - CAVERAT_Ready2
+  - CAVERAT_Tackle3
+  - CAVERAT_Dead1
+  - CAVERAT_Tackle1
+  - CAVERAT_SHOOTER_Chase1
+  - CAVERAT_SHOOTER_AttackB1
+  - CAVERAT_SHOOTER_ReadyA3
+  - CAVERAT_SHOOTER_ReadyB2
+  - CAVERAT_SHOOTER_Patrol3
+  - CAVERAT_Patrol2
+  - CAVERAT_SHOOTER_Patrol1
+  - CAVERAT_SHOOTER_ReadyA2
+  - CAVERAT_Chase1
+  - CAVERAT_SHOOTER_ReadyB1
+  - CAVERAT_SHOOTER_ReadyA4
+  - CAVERAT_SHOOTER_ReadyB3
+  - CAVERAT_Chase4
+  - CAVERAT_Patrol6
+  - CAVERAT_SHOOTER_Chase4
+  - CAVERAT_Hit2
+  - CAVERAT_Patrol1
+  - CAVERAT_Chase2
+  - CAVERAT_SHOOTER_AttackB4
+  - CAVERAT_SHOOTER_AttackB3
+  - CAVERAT_SHOOTER_AttackA4
+  - CAVERAT_Hit1
+  - CAVERAT_SHOOTER_AttackB2
+  - CAVERAT_SHOOTER_AttackA3
+  - CAVERAT_SHOOTER_Patrol2
+  m_Tag: ECaveRatAtlas
+  m_IsVariant: 0

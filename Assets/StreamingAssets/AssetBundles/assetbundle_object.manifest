@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 2711246649
+CRC: 4091767021
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 1c8b7cb992b429e299d638a7c0788b5b
+    Hash: d8231842c71def6ba57124d08f4e5e3a
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 03084fd9255d8f6fb17a22ea5851f336
+    Hash: e6315c88c21815e5d6438133fc5e510a
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -24,10 +24,27 @@ ClassTypes:
 - Class: 48
   Script: {instanceID: 0}
 - Class: 114
+  Script: {fileID: 11500000, guid: 5e2a0c63ef281b44a823365c3d5bffcd, type: 3}
+- Class: 114
   Script: {fileID: 11500000, guid: dd3a6d5489b4d7f44ab4a14b10346802, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: eed18989d0776144fbc5a406b610b709, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 21ae0c3d7722a4bc0b743f08432e661a, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 35c5896eac809a44c92f07d2729e1498, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 6115d5400c95c774882ed291f43d36a7, type: 3}
 - Class: 115
   Script: {instanceID: 0}
+- Class: 212
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+- Class: 687078895
+  Script: {instanceID: 0}
 Assets:
+- Assets/Prefabs/Enemies/ECaveRatMelee.prefab
 - Assets/Tilesets/Tileset_Undervillage.mat
 - Assets/Tilesets/Tileset_Icevillage.mat
 - Assets/Prefabs/TilemapVisual.prefab

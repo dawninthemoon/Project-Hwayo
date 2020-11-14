@@ -39,7 +39,7 @@ namespace CustomPhysics {
             Vector2 cur = position + _circle.radius * new Vector2(Mathf.Cos(0f), Mathf.Sin(0f));
             Vector2 prev = cur;
             
-            Gizmos.color = Color.red;
+            Gizmos.color = _gizmoColor;
             for (float theta = 0.1f; theta < Mathf.PI * 2f; theta += 0.1f) {
                 cur = position + _circle.radius * new Vector2(Mathf.Cos(theta), Mathf.Sin(theta));
                 Gizmos.DrawLine(cur, prev);

@@ -59,7 +59,7 @@ namespace CustomPhysics {
             int pLength = points.Length;
             if (pLength < 2) return;
 
-            Gizmos.color = Color.red;
+            Gizmos.color = _gizmoColor;
             Vector2 cur = transform.position;
             for (int i = 0; i < pLength; ++i) {
                 int nextIdx = (i + 1) % pLength;

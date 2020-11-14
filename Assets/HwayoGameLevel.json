@@ -419,19 +419,8 @@
                 {
                     "row": 5,
                     "column": 3,
-                    "name": "SetPlayerPosition",
+                    "name": "SetPlayer",
                     "fields": []
-                },
-                {
-                    "row": 5,
-                    "column": 9,
-                    "name": "Default Entity",
-                    "fields": [
-                        {
-                            "name": "Field1",
-                            "value": "10"
-                        }
-                    ]
                 }
             ],
             "colliders": [
@@ -801,8 +790,19 @@
                 {
                     "row": 4,
                     "column": 4,
-                    "name": "SetPlayerPosition",
+                    "name": "SetPlayer",
                     "fields": []
+                },
+                {
+                    "row": 5,
+                    "column": 9,
+                    "name": "SetEnemy",
+                    "fields": [
+                        {
+                            "name": "enemyName",
+                            "value": "ECaveRatMelee"
+                        }
+                    ]
                 }
             ],
             "colliders": [

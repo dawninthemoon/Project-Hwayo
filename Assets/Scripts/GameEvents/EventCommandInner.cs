@@ -9,10 +9,12 @@ public partial class EventCommand {
         public Dictionary<string, LevelInfo> LevelDictionary { get; }
         public PlayerControl Player { get; }
         public EntityInfo ExecuterEntity { get; set; }
-        public SharedData(PlayerControl player, CustomGrid<TileObject> grid, Dictionary<string, LevelInfo> info) {
+        public EnemyCreation EnemyCreation;
+        public SharedData(PlayerControl player, CustomGrid<TileObject> grid, Dictionary<string, LevelInfo> info, EnemyCreation enemyCreation) {
             Player = player;
             Grid = grid;
             LevelDictionary = info;
+            EnemyCreation = enemyCreation;
         }
     }
     public class SharedVariable {

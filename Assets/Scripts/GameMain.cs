@@ -4,10 +4,10 @@ using UnityEngine;
 using CustomPhysics;
 using CustomParticleSystem;
 
-public class GameMain : MonoBehaviour
-{
+public class GameMain : MonoBehaviour {
     [SerializeField] PlayerControl _player = null;
     [SerializeField] InputControl _input = null;
+    [SerializeField] EnemyCreation _enemyCreation = null;
 
     ParticleManager _particleManager;
 
@@ -19,11 +19,13 @@ public class GameMain : MonoBehaviour
         CollisionManager.GetInstance().Initalize();
         levelManager.Initalize();
         _particleManager.Initalize();
+        _enemyCreation.Initalize();
 
         EventCommand.SharedData sharedData = new EventCommand.SharedData(
             _player,
             levelManager.TileGrid,
-            levelManager.LevelDictionary
+            levelManager.LevelDictionary,
+            _enemyCreation
         );
         EventManager.GetInstance().Initalize(sharedData);
 
@@ -36,6 +38,7 @@ public class GameMain : MonoBehaviour
     }
 
     void Update() {
+        _enemyCreation.Progress();
         _input.Progress();
         _player.Progress();
         _particleManager.Progress();

@@ -3,17 +3,17 @@ using Aroma;
 
 [RequireComponent (typeof (GroundController))]
 public class PlayerControl : MonoBehaviour, ISetupable, ILoopable {
-	PlayerMovementControl _movementControl;
+	GroundMovementControl _movementControl;
 	PlayerStateControl _stateControl;
 	PlayerMeleeAttack _meleeAttack;
 	private Vector2 _directionalInput;
 
 	public void Initalize() {
 		var controller = GetComponent<GroundController>();
-		var movementSetting = GetComponentInChildren<TBLPlayerMovement>();
+		var movementSetting = GetComponentInChildren<TBLGroundMovement>();
 		var wallJumpSetting = GetComponentInChildren<TBLPlayerWallJump>();
 
-		_movementControl = new PlayerMovementControl(controller, movementSetting, wallJumpSetting);
+		_movementControl = new GroundMovementControl(controller, movementSetting, wallJumpSetting);
 		_movementControl.Initalize();
 
 		_meleeAttack = new PlayerMeleeAttack();
@@ -25,7 +25,7 @@ public class PlayerControl : MonoBehaviour, ISetupable, ILoopable {
 	public void Progress() {
 		_movementControl.CalculateVelocity(_directionalInput);
 		_movementControl.HandleWallSliding(_directionalInput);
-		_movementControl.MovePlayer(_directionalInput);
+		_movementControl.MoveObject(_directionalInput);
 
 		_movementControl.PostCalculateVelocity();
 

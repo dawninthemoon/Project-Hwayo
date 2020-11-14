@@ -24,14 +24,15 @@ namespace CustomPhysics {
             }
         }
         public string Tag { get; set; }
-        public UnityEvent OnCollisionEvent { get; private set; }
+        public UnityEvent OnCollisionEvent { get; private set; } = new UnityEvent();
         int _layerMask;
+        [SerializeField] protected Color _gizmoColor = Color.red;
 
         protected virtual void Start() {
-            OnCollisionEvent = new UnityEvent();
             CollisionManager.GetInstance().AddCollider(this);
             InitalizeLayerMask();
         }
+
         void InitalizeLayerMask() {
             switch (_colliderLayer) {
             case ColliderLayerMask.Default:
