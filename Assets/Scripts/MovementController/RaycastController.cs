@@ -30,10 +30,10 @@ public class RaycastController : MonoBehaviour, ISetupable {
 		bounds.width -= (_skinWidth * 2f);
 		bounds.height -= (_skinWidth * 2f);
 
-		raycastOrigins.bottomLeft = new Vector2(bounds.center.x - bounds.width * 0.5f, bounds.center.y - bounds.height * 0.5f);
-		raycastOrigins.bottomRight = new Vector2(bounds.center.x + bounds.width * 0.5f, bounds.center.y - bounds.height * 0.5f);
-		raycastOrigins.topLeft = new Vector2(bounds.center.x - bounds.width * 0.5f, bounds.center.y + bounds.height * 0.5f);
-		raycastOrigins.topRight = new Vector2(bounds.center.x + bounds.width * 0.5f, bounds.center.y + bounds.height * 0.5f);
+		raycastOrigins.bottomLeft = new Vector2(bounds.position.x, bounds.position.y - bounds.height);
+		raycastOrigins.bottomRight = new Vector2(bounds.position.x, bounds.position.y - bounds.height);
+		raycastOrigins.topLeft = new Vector2(bounds.position.x, bounds.position.y + bounds.height);
+		raycastOrigins.topRight = new Vector2(bounds.position.x, bounds.position.y + bounds.height);
 	}
 
 	public void CalculateRaySpacing() {

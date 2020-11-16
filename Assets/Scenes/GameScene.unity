@@ -569,6 +569,7 @@ MonoBehaviour:
   _gizmoColor: {r: 0, g: 1, b: 0, a: 1}
   _rect:
     center: {x: 0.5, y: 12.5}
+    offset: {x: 0, y: 0}
     width: 19
     height: 25
     rotation: 0

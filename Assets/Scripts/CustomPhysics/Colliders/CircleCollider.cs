@@ -21,8 +21,10 @@ namespace CustomPhysics {
             base.Start();
         }
         public override Rectangle GetBounds() {
-            Rectangle bounds = new Rectangle(_circle.center, _circle.radius * 2f, _circle.radius * 2f);
-            bounds.center += (Vector2)transform.position;
+            Vector2 pos = _circle.center;
+            pos.x -= _circle.radius; pos.y -= _circle.radius;
+            Rectangle bounds = new Rectangle(pos, _circle.radius * 2f, _circle.radius * 2f);
+            bounds.position += (Vector2)transform.position;
             return bounds;
         }
         public override bool IsCollision(CustomCollider other) {

@@ -37,8 +37,8 @@ public class QuadTree<T> where T : IQuadTreeObject {
 	private void Split() {
 		int subWidth = Mathf.FloorToInt(_bounds.width * 0.5f);
 		int subHeight = Mathf.FloorToInt(_bounds.height * 0.5f);
-		int x = (int)_bounds.center.x;
-		int y = (int)_bounds.center.x;
+		int x = (int)_bounds.position.x;
+		int y = (int)_bounds.position.x;
 		
 		_nodes[0] = new QuadTree<T>(_level + 1, new Rectangle(x + subWidth, y, subWidth, subHeight));
 		_nodes[1] = new QuadTree<T>(_level + 1, new Rectangle(x, y, subWidth, subHeight));
@@ -49,19 +49,19 @@ public class QuadTree<T> where T : IQuadTreeObject {
 	private List<int> GetIndexes(Rectangle rect) {
 	    List<int> indexes = new List<int>();
 	
-	    double verticalMidpoint = _bounds.center.x + (_bounds.width / 2);
-	    double horizontalMidpoint = _bounds.center.y + (_bounds.height / 2);
+	    double verticalMidpoint = _bounds.position.x + (_bounds.width / 2);
+	    double horizontalMidpoint = _bounds.position.y + (_bounds.height / 2);
 	
-		bool topQuadrant = rect.center.y >= horizontalMidpoint;
-		bool bottomQuadrant = (rect.center.y - rect.height) <= horizontalMidpoint;
-		bool topAndBottomQuadrant = rect.center.y + rect.height + 1 >= horizontalMidpoint && rect.center.y + 1 <= horizontalMidpoint;
+		bool topQuadrant = rect.position.y >= horizontalMidpoint;
+		bool bottomQuadrant = (rect.position.y - rect.height) <= horizontalMidpoint;
+		bool topAndBottomQuadrant = rect.position.y + rect.height + 1 >= horizontalMidpoint && rect.position.y + 1 <= horizontalMidpoint;
 		
 		if (topAndBottomQuadrant) {
 			topQuadrant = false;
 			bottomQuadrant = false;
 		}
 	
-		if(rect.center.x + rect.width + 1 >= verticalMidpoint && rect.center.x -1 <= verticalMidpoint) {
+		if(rect.position.x + rect.width + 1 >= verticalMidpoint && rect.position.x -1 <= verticalMidpoint) {
 			if (topQuadrant) {
 				indexes.Add(2);
 				indexes.Add(3);
@@ -78,7 +78,7 @@ public class QuadTree<T> where T : IQuadTreeObject {
 			}
 		}
 		
-		else if (rect.center.x + 1 >= verticalMidpoint) {
+		else if (rect.position.x + 1 >= verticalMidpoint) {
 			if (topQuadrant) {
 				indexes.Add(3);
 			}
@@ -91,7 +91,7 @@ public class QuadTree<T> where T : IQuadTreeObject {
 			}
 		}
 
-		else if (rect.center.x - rect.width <= verticalMidpoint) {
+		else if (rect.position.x - rect.width <= verticalMidpoint) {
 			if (topQuadrant) {
 				indexes.Add(2);
 			}

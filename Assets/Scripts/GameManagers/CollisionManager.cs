@@ -175,7 +175,7 @@ namespace CustomPhysics {
         }
         public bool IsCollision(RectCollider c1, RectCollider c2) {
             Rectangle rect1 = c1.GetBounds(), rect2 = c2.GetBounds();
-			Vector2 dist = rect1.center - rect2.center;
+			Vector2 dist = rect1.position - rect2.position;
             _cachedVectorArr[0] = c1.GetHeightVector();
             _cachedVectorArr[1] = c2.GetHeightVector();
             _cachedVectorArr[2] = c1.GetWidthVector();
@@ -209,14 +209,14 @@ namespace CustomPhysics {
             Circle circle = c2.CircleShape;
 
             float max = -Mathf.Infinity;
-            Vector2 boxToCircle = circle.center - rect.center;
+            Vector2 boxToCircle = circle.center - rect.position;
             float boxToCircleMagnitude = boxToCircle.magnitude;
             Vector2 normalizedBoxToCircle = boxToCircle.normalized;
 
-            _cachedVectorArr[0] = new Vector2(-rect.width * 0.5f,  rect.height * 0.5f);
-            _cachedVectorArr[1] = new Vector2( rect.width * 0.5f,  rect.height * 0.5f);
-            _cachedVectorArr[2] = new Vector2( rect.width * 0.5f, -rect.height * 0.5f);
-            _cachedVectorArr[3] = new Vector2(-rect.width * 0.5f, -rect.height * 0.5f);
+            _cachedVectorArr[0] = rect.GetP00();
+            _cachedVectorArr[1] = rect.GetP01();
+            _cachedVectorArr[2] = rect.GetP11();
+            _cachedVectorArr[3] = rect.GetP10();
 
             for (int i = 0; i < 4; ++i) {
                 float currentProjection = Vector2.Dot(_cachedVectorArr[i], normalizedBoxToCircle);

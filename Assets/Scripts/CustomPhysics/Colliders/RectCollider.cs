@@ -6,21 +6,35 @@ using UnityEngine;
 namespace CustomPhysics {
     [System.Serializable]
     public struct Rectangle {
-        public Vector2 center;
+        public Vector2 position;
         public float width;
         public float height;
         public float rotation;
         public Rectangle(float x, float y, float width, float height, float rotation = 0f) {
-            this.center = new Vector2(x, y);
+            this.position = new Vector2(x, y);
             this.width = width;
             this.height = height;
             this.rotation = rotation;
         }
         public Rectangle(Vector2 position, float width, float height, float rotation = 0f) {
-            this.center = position;
+            this.position = position;
             this.width = width;
             this.height = height;
             this.rotation = rotation;
+        }
+
+        public Vector2 GetP11() {
+            return new Vector2(Mathf.Cos(rotation * Mathf.Deg2Rad), Mathf.Sin(rotation * Mathf.Deg2Rad)) * width;
+        }
+
+        public Vector2 GetP01() {
+            return new Vector2(Mathf.Cos(rotation * Mathf.Deg2Rad + Mathf.PI), Mathf.Sin(rotation * Mathf.Deg2Rad + Mathf.PI)) * width * 0.5f;
+        }
+        public Vector2 GetP10() {
+            return GetP11() + new Vector2(Mathf.Cos(rotation * Mathf.Deg2Rad + Mathf.PI * 0.5f), Mathf.Sin(rotation * Mathf.Deg2Rad + Mathf.PI * 0.5f)) * height;
+        }
+        public Vector2 GetP00() {
+            return new Vector2(Mathf.Cos(rotation * Mathf.Deg2Rad + Mathf.PI * 0.5f), Mathf.Sin(rotation * Mathf.Deg2Rad + Mathf.PI * 0.5f)) * height;
         }
     }
 
@@ -31,7 +45,7 @@ namespace CustomPhysics {
         }
         public override Rectangle GetBounds() {
             Rectangle newRectangle = _rect;
-            newRectangle.center += (Vector2)transform.position;
+            newRectangle.position += (Vector2)transform.position;
             newRectangle.width *= Mathf.Abs(transform.localScale.x);
             newRectangle.height *= Mathf.Abs(transform.localScale.y);
             newRectangle.rotation += transform.localRotation.eulerAngles.z;
@@ -63,34 +77,24 @@ namespace CustomPhysics {
         }
 
         void OnDrawGizmos() {
-            Vector2 cur = (Vector2)transform.position + _rect.center;
-            float width = _rect.width * Mathf.Abs(transform.localScale.x);
+            Vector2 pos = (Vector2)transform.position + _rect.position;
+            float halfWidth = _rect.width * Mathf.Abs(transform.localScale.x) * 0.5f;
             float height = _rect.height * Mathf.Abs(transform.localScale.y);
-            Vector2 p00 = new Vector2(cur.x - width * 0.5f, cur.y + height * 0.5f);
-            Vector2 p10 = new Vector2(cur.x + width * 0.5f, cur.y + height * 0.5f);
-            Vector2 p11 = new Vector2(cur.x + width * 0.5f, cur.y - height * 0.5f);
-            Vector2 p01 = new Vector2(cur.x - width * 0.5f, cur.y - height * 0.5f);
             
             float rotation = _rect.rotation + transform.localRotation.eulerAngles.z;
             float radian = rotation * Mathf.Deg2Rad;
-            float radius = (p00 - cur).magnitude;
- 
-            RotatePoint(ref p00);
-            RotatePoint(ref p10);
-            RotatePoint(ref p11);
-            RotatePoint(ref p01);
+            
+            Vector2 vec = new Vector2(Mathf.Cos(radian + Mathf.PI * 0.5f), Mathf.Sin(radian + Mathf.PI * 0.5f)) * height;
+            Vector2 p11 = pos + new Vector2(Mathf.Cos(radian), Mathf.Sin(radian)) * halfWidth;
+            Vector2 p01 = pos + new Vector2(Mathf.Cos(radian + Mathf.PI), Mathf.Sin(radian + Mathf.PI)) * halfWidth;
+            Vector2 p00 = p01 + vec;
+            Vector2 p10 = p11 + vec;
 
             Gizmos.color = _gizmoColor;
             Gizmos.DrawLine(p00, p10);
             Gizmos.DrawLine(p10, p11);
             Gizmos.DrawLine(p11, p01);
             Gizmos.DrawLine(p01, p00);
-
-            void RotatePoint(ref Vector2 p) {
-                Vector2 diff = p - cur;
-                float alteredRadian = radian + Mathf.Atan2(diff.y, diff.x);
-                p = cur + radius * new Vector2(Mathf.Cos(alteredRadian), Mathf.Sin(alteredRadian));
-            }
         }
     }
 }
