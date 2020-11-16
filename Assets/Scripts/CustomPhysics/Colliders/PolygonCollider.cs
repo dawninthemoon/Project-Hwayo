@@ -25,7 +25,7 @@ namespace CustomPhysics {
             float width = maxX - minX;
             float height = maxY - minY;
 
-            _bounds = new Rectangle(minX, minY, width, height);
+            _bounds = new Rectangle(minX + width * 0.5f, minY, width, height);
         }
     }
 

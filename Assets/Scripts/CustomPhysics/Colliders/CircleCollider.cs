@@ -22,7 +22,7 @@ namespace CustomPhysics {
         }
         public override Rectangle GetBounds() {
             Vector2 pos = _circle.center;
-            pos.x -= _circle.radius; pos.y -= _circle.radius;
+            pos.y -= _circle.radius;
             Rectangle bounds = new Rectangle(pos, _circle.radius * 2f, _circle.radius * 2f);
             bounds.position += (Vector2)transform.position;
             return bounds;
